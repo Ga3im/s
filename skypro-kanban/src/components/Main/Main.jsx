@@ -1,13 +1,13 @@
-import { Column } from "./Column"
-import { statusList } from "../date"
+import { Column } from "../Column/Column"
+import { statusList } from "../../date"
 
 export const Main = ({cards})=>{
     return(
-        <main class="main">
-			<div class="container">
+        <main className="main">
+			<div className="container">
 				
-				<div class="main__block">
-					<div class="main__content">
+				<div className="main__block">
+					<div className="main__content">
 						{statusList.map((status, id)=>(
 							<Column 
 							key={id}

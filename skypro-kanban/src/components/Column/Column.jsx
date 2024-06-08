@@ -1,12 +1,12 @@
-import { Card } from "./Card"
+import { Card } from "../Card/Card"
 
 export const Column = ({title, cards})=>{
     return(
-        <div class="main__column column">
-							<div class="column__title">
+        <div className="main__column column">
+							<div className="column__title">
 								<p>{title}</p>
 							</div>
-							<div class="cards">
+							<div className="cards">
 								{cards.map((card)=>(
 									<Card key={card.id} 
 									title={card.title} 

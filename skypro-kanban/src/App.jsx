@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Header } from './components/Header'
-import { Main } from './components/Main'
-import { PopNewCard } from './components/popups/PopNewCard'
-import { PopBrowse } from './components/popups/popBrowse'
-import { PopExit } from './components/popups/popExit'
+import { Header } from './components/Header/Header'
+import { Main } from './components/Main/Main'
+import { PopNewCard } from './components/PopNewCard/PopNewCard'
+import { PopBrowse } from './components/PopBrowse/popBrowse'
+import { PopExit } from './components/PopUser/popExit'
 import { cardList } from './date'
 
 
@@ -19,7 +19,7 @@ function App() {
       id:  cards.length + 1,
       topic:"Web Design" ,
       title:"Новая задача",
-      date: "30.10.23",
+      date: "8.06.24",
       status:"Без статуса",
      }
      setCards([...cards, newCard])
@@ -40,7 +40,8 @@ setTimeout(()=>{
 			<PopNewCard/>
 			<PopBrowse/>
 		  <Header addCard={addCard}/>
-      {isLoading? <img className='loader' src="public/loading.gif" alt="" /> : 	 <Main cards={cards}/>
+      {isLoading? <img className='loader' src="public/loading.gif" alt="" /> : 	 
+      <Main cards={cards}/>
 }
 		
     </div>
