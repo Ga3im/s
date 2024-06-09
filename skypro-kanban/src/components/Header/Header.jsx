@@ -3,6 +3,7 @@ import { useState } from "react"
 export const Header = ({addCard}) =>{
 	const [isOpen, setIsOpen] = useState(false)
 	const [isDark, setIsDark] = useState(false)
+	
 	const toggleOpenUser = () =>{
 		setIsOpen(!isOpen)
 	}

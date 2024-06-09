@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+// import './MainDark.css'
 import { Header } from './components/Header/Header'
 import { Main } from './components/Main/Main'
 import { PopNewCard } from './components/PopNewCard/PopNewCard'
 import { PopBrowse } from './components/PopBrowse/popBrowse'
 import { PopExit } from './components/PopUser/popExit'
 import { cardList } from './date'
-
-
 
 function App() {
 
@@ -29,13 +28,13 @@ useEffect(()=>{
 setIsLoading(true)
 setTimeout(()=>{
   setIsLoading(false)
-}, 2000)
+}, 1500)
   
 }, [])
 
   return (
-    <>
-     <div class="wrapper">
+     <>
+     <div className="wrapper">
 			<PopExit/>
 			<PopNewCard/>
 			<PopBrowse/>
@@ -43,7 +42,6 @@ setTimeout(()=>{
       {isLoading? <img className='loader' src="public/loading.gif" alt="" /> : 	 
       <Main cards={cards}/>
 }
-		
     </div>
     </>
   )
