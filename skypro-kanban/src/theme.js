@@ -12,6 +12,7 @@ export const light = {
     Title: "#000000",
     HeadUser: "#FFFFFF",
     shadow: "0px 0px 5px black",
+    checkpoint: "#94A6BE",
 }
 
 
@@ -29,6 +30,7 @@ export const dark = {
     Title: "#FFFFFF",
     HeadUser: "#202229",
     shadow: "0px 0px 5px white",
+    checkpoint: "blue",
 
 }
 

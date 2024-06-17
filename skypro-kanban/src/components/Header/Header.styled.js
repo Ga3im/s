@@ -142,7 +142,7 @@ input[type=checkbox]::before {
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background-color: #94A6BE;
+  background-color: ${({theme})=> theme.checkpoint};
   transition: 0.5s;
 }
 
