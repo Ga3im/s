@@ -94,3 +94,7 @@ export const Gray = css`
     background: #94A6BE;
     color: #FFFFFF;
 `
+export const CalenarStyle = css`
+ width: 182px;
+ margin-bottom: 20px;
+`
