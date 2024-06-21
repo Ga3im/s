@@ -1,44 +1,45 @@
 import { useState } from "react"
+import * as S from "./Header.styled.js"
+import { Container } from "../../GlobalStyle.styled"
 
-export const Header = ({addCard}) =>{
+export const Header = ({addCard, changeTheme, setChangeTheme}) =>{
 	const [isOpen, setIsOpen] = useState(false)
-	const [isDark, setIsDark] = useState(false)
 	
 	const toggleOpenUser = () =>{
 		setIsOpen(!isOpen)
 	}
-	 const toggleDarkTheme = ()=>{
-		setIsDark(!isDark)
-		console.log(!isDark)
-	 }
-    return(<header className="header">
-			<div className="container">
-				<div className="header__block">
-					<div className="header__logo _show _light">
+
+	const onChangeTheme = ()=>{
+		setChangeTheme(changeTheme === 'light'? 'dark' : 'light')
+	}
+
+    return(<S.Header>
+			<Container>
+				<S.HeaderBlock>
+					<S.HeaderLogo>
 						<a href="" target="_self"><img src="/logo.png" alt="logo"/></a>
-					</div>
-					<div className="header__logo _dark">
+					</S.HeaderLogo>
+					{/* <S.HeaderLogo >
 						<a href="" target="_self"><img src="/logo_dark.png" alt="logo"/></a>
-					</div>
-					<nav className="header__nav">
-						<button
+					</S.HeaderLogo> */}
+					<S.Nav>
+						<S.ButtonNewTask
 						onClick={addCard}
-						 className="header__btn-main-new _hover01" id="btnMainNew"><a>Создать новую задачу</a></button>
-						<a onClick={toggleOpenUser} className="header__user _hover02">Ivan Ivanov</a>
+						id="btnMainNew"><a>Создать новую задачу</a></S.ButtonNewTask>
+						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >Ivan Ivanov</S.HeaderUserName>
 						{isOpen && 
-						<div className="header__pop-user-set pop-user-set" id="user-set-target">
-						<a href=""></a>
-							<p className="pop-user-set__name">Ivan Ivanov</p>
-							<p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-							<div className="pop-user-set__theme">
+						<S.HeaderPopUser id="user-set-target">
+							<S.UserName>Ivan Ivanov</S.UserName>
+							<S.UserMail>ivan.ivanov@gmail.com</S.UserMail>
+							<S.UserTheme>
 								<p>Темная тема</p>
-								<input onClick={toggleDarkTheme} type="checkbox" className="checkbox" name="checkbox"/>
-							</div>
-							<button type="button" className="_hover03"><a href="#popExit">Выйти</a></button>
-						</div>}
+								<input checked={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>
+							</S.UserTheme>
+							<a href="#popExit"><S.ButtonExit type="button">Выйти</S.ButtonExit></a>
+						</S.HeaderPopUser>}
 						
-					</nav>					
-				</div>
-			</div>			
-		</header>)
+					</S.Nav>					
+				</S.HeaderBlock>
+			</Container>			
+		</S.Header>)
 }
