@@ -1,9 +1,12 @@
 import { useState } from "react"
 import * as S from "./Header.styled.js"
 import { Container } from "../../GlobalStyle.styled"
+import { Link } from "react-router-dom"
+import { routes } from "../../router/routes.js"
 
 export const Header = ({addCard, changeTheme, setChangeTheme}) =>{
 	const [isOpen, setIsOpen] = useState(false)
+	
 	
 	const toggleOpenUser = () =>{
 		setIsOpen(!isOpen)
@@ -35,7 +38,7 @@ export const Header = ({addCard, changeTheme, setChangeTheme}) =>{
 								<p>Темная тема</p>
 								<input checked={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>
 							</S.UserTheme>
-							<a href="#popExit"><S.ButtonExit type="button">Выйти</S.ButtonExit></a>
+							<Link to={routes.exit}><S.ButtonExit type="button">Выйти</S.ButtonExit></Link>
 						</S.HeaderPopUser>}
 						
 					</S.Nav>					
