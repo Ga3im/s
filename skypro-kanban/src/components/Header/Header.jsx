@@ -4,7 +4,10 @@ import { Container } from "../../GlobalStyle.styled"
 import { Link } from "react-router-dom"
 import { routes } from "../../router/routes.js"
 
+
+
 export const Header = ({addCard, changeTheme, setChangeTheme}) =>{
+	
 	const [isOpen, setIsOpen] = useState(false)
 	
 	
