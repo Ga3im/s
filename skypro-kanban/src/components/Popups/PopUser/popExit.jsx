@@ -1,6 +1,6 @@
 import { routes } from "../../../router/routes"
 import { Link, useNavigate } from "react-router-dom"
-import { ButtonExitNo, ButtonExitYes, PopExitContainer, PopExitBlock, PopExitGroup } from "./PopExit.styled"
+import { ButtonExitNo, ButtonExitYes, PopExitContainer, PopExitBlock, PopExitGroup, ExitTtl } from "./PopExit.styled"
 
 export const PopExit = ({setIsAuth})=>{
 	const nav = useNavigate()
@@ -13,9 +13,9 @@ export const PopExit = ({setIsAuth})=>{
         <div className="pop-exit" id="popExit">
 				<PopExitContainer>
 					<PopExitBlock>
-						<div className="pop-exit__ttl">
+						<ExitTtl>
 							<h2>Выйти из аккаунта?</h2>
-						</div>
+						</ExitTtl>
 						<form className="pop-exit__form" id="formExit" action="#">
 							<PopExitGroup>
 							<ButtonExitYes onClick={handleLogout} id="exitYes">Да, выйти </ButtonExitYes>

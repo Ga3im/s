@@ -20,6 +20,7 @@ export const HeaderBlock = styled.div`
 `
 export const HeaderLogo = styled.div`
   width: 85px;
+  
 `
 
 export const Nav = styled.nav`
