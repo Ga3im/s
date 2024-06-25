@@ -1,12 +1,15 @@
 import { routes } from "../../../router/routes";
+import { Animat } from "../../Animate";
 import { Calendar } from "../../Calendar/Calendar";
 import { Link, useParams } from "react-router-dom"
 
 
 export const PopBrowse = () => {
-  const params = useParams()
-  console.log(params.CardId)
+const params = useParams()
+  // console.log(params.CardId)
   return (
+    <>
+    <Animat params={params}/>
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
         <div className="pop-browse__block">
@@ -100,5 +103,6 @@ export const PopBrowse = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };

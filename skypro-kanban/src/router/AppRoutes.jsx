@@ -10,7 +10,7 @@ import { ExitPage } from "../page/ExitPage/ExitPage.jsx";
 import { CardPage } from "../page/CardPage/CardPage.jsx";
 
 export const AppRoutes = ({changeTheme, setChangeTheme}) =>{
-  const[isAuth, setIsAuth] = useState(false)
+  const[isAuth, setIsAuth] = useState(true)
     return(
       <BrowserRouter>
         <Routes>
