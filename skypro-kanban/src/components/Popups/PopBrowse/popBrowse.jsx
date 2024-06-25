@@ -10,7 +10,7 @@ const params = useParams()
   return (
     <>
     <Animat params={params}/>
-    <div className="pop-browse" id="popBrowse">
+    <div className="pop-browse" id={params.CardId}>
       <div className="pop-browse__container">
         <div className="pop-browse__block">
           <div className="pop-browse__content">
