@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom"
 
 
 export const PopBrowse = () => {
-  const {id} = useParams()
+  const params = useParams()
+  console.log(params.CardId)
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
