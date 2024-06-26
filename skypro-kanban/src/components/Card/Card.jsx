@@ -1,10 +1,9 @@
+import { routes } from "../../router/routes"
 import * as S from "./Card.styled"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 export const Card = ({title, topic, date, id})=>{
-	// console.log(params)
-
     return(
         <S.CardItem>
 			<S.Card>

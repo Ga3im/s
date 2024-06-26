@@ -1,6 +1,6 @@
 import './Animate.css'
 export const Animat = ({params})=>{
     return(
-        <div className="lol">{params.CardId}</div>
+        <div className="lol">{params.id}</div>
     )
 }

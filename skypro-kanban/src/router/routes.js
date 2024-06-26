@@ -4,5 +4,5 @@ export const routes ={
     register: "/register",
     notFound: "*",
     exit: "/exit",
-    card: "/card/:CardId"
+    card: "/card/:id"
 }
