@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react"
 import { cardList } from "../../date"
-import { Wrapper } from "../../GlobalStyle.styled"
+import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled"
 import {PopNewCard} from "../../components/Popups/PopNewCard/PopNewCard"
 import {Header} from "../../components/Header/Header"
 import {Main} from "../../components/Main/Main"
 import {Outlet} from "react-router-dom"
+import { ThemeProvider } from 'styled-components'
+import { light, dark } from '../../theme'
 
 
-export const MainPage = ({setChangeTheme, changeTheme})=>{
+
+export const MainPage = ()=>{
     const [cards, setCards] = useState(cardList)
     const [isLoading, setIsLoading] =useState(false)
+    const [changeTheme, setChangeTheme] = useState("light")
+
 
     const addCard = ()=>{
         const newCard = {
@@ -31,6 +36,8 @@ export const MainPage = ({setChangeTheme, changeTheme})=>{
    }, [])
 
     return(
+      <ThemeProvider theme={changeTheme === "light" ? light : dark}>
+     <GlobalStyle/>
   <Wrapper>
         <Outlet/>
         <PopNewCard/>
@@ -39,5 +46,7 @@ export const MainPage = ({setChangeTheme, changeTheme})=>{
   <Main  cards={cards}/>
 }
 </Wrapper>
+</ThemeProvider>
+
     )
 }
