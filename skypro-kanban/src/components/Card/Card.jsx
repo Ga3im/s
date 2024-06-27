@@ -1,3 +1,4 @@
+import { routes } from "../../router/routes"
 import * as S from "./Card.styled"
 import { Link } from "react-router-dom"
 
@@ -19,9 +20,9 @@ export const Card = ({title, topic, date, id})=>{
 					</Link>
 				</S.CardGroup>
 				<S.CardContent>
-					<a href="" target="_blank">
+					<Link to={`/card/${id}`}>
 						<S.CardTitle>{title}</S.CardTitle>
-					</a>
+					</Link>
 					<S.CardDate>
 						<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
 							<g clipPath="url(#clip0_1_415)">
