@@ -1,33 +1,36 @@
 import { useState, useEffect } from "react"
-import { cardList } from "../../date"
 import { Wrapper } from "../../GlobalStyle.styled"
 import {PopNewCard} from "../../components/Popups/PopNewCard/PopNewCard"
 import {Header} from "../../components/Header/Header"
 import {Main} from "../../components/Main/Main"
 import {Outlet} from "react-router-dom"
+import { getCards, postCards } from "../../api"
 
 
-export const MainPage = ({setChangeTheme, changeTheme})=>{
-    const [cards, setCards] = useState(cardList)
-    const [isLoading, setIsLoading] =useState(false)
+export const MainPage = ({setChangeTheme, changeTheme, user})=>{
+    const [cards, setCards] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState()
 
-    const addCard = ()=>{
-        const newCard = {
-         id:  cards.length + 1,
-         topic:"Web Design" ,
-         title:"Новая задача",
-         date: "8.06.24",
-         status:"Без статуса",
-        }
-        setCards([...cards, newCard])
+    const addCard = async ()=>{
+      if (!cards) {
+        return;
+      }  
+       const newCard = await postCards(cards)
+        setCards(newCard.tasks)
      }
 
    useEffect(()=>{
-   setIsLoading(true)
-   setTimeout(()=>{
-     setIsLoading(false)
-   }, 0)
-     
+   getCards(user.token)
+   .then((res)=>
+    {setCards(res.tasks)
+  })
+   .catch((error)=>{
+    setError(error.message)
+   })
+   .finally(()=>{
+    setIsLoading(false)
+   })
    }, [])
 
     return(
@@ -35,8 +38,11 @@ export const MainPage = ({setChangeTheme, changeTheme})=>{
         <Outlet/>
         <PopNewCard/>
       <Header addCard={addCard} setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>
-  {isLoading? <img className='loader' src="public/loading.gif" alt="" /> : 	 
-  <Main  cards={cards}/>
+  {isLoading? 
+  <img className='loader' src="public/loading.gif" alt="" />
+  : error?
+  <p>{error}</p> 
+  : <Main cards={cards}/>
 }
 </Wrapper>
     )
