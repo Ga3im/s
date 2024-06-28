@@ -6,14 +6,8 @@ import { routes } from "../../router/routes.js"
 
 
 
-export const Header = ({addCard, changeTheme, setChangeTheme}) =>{
-	
-	const [isOpen, setIsOpen] = useState(false)
-	
-	
-	const toggleOpenUser = () =>{
-		setIsOpen(!isOpen)
-	}
+export const Header = ({toggleOpenUser, addCard, changeTheme, setChangeTheme, isOpen, setIsOpen}) =>{
+
 
 	const onChangeTheme = ()=>{
 		setChangeTheme(changeTheme === 'light'? 'dark' : 'light')
@@ -39,7 +33,7 @@ export const Header = ({addCard, changeTheme, setChangeTheme}) =>{
 							<S.UserMail>ivan.ivanov@gmail.com</S.UserMail>
 							<S.UserTheme>
 								<p>Темная тема</p>
-								<input checked={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>
+								<input readOnly={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>
 							</S.UserTheme>
 							<Link to={routes.exit}><S.ButtonExit type="button">Выйти</S.ButtonExit></Link>
 						</S.HeaderPopUser>}

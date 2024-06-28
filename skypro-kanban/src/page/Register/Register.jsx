@@ -16,8 +16,8 @@ export const Register = ()=>{
 					</A.ModalTtl>
 					<A.ModalFormLogin id="formLogUp" action="#">
 						<A.ModalInput type="text" name="first-name" id="first-name" placeholder="Имя"/>
-						<A.ModalInput class="modal__input login" type="text" name="login" id="loginReg" placeholder="Эл. почта"/>
-						<A.ModalInput class="modal__input password-first" type="password" name="password" id="passwordFirst" placeholder="Пароль"/>
+						<A.ModalInput className="modal__input login" type="text" name="login" id="loginReg" placeholder="Эл. почта"/>
+						<A.ModalInput className="modal__input password-first" type="password" name="password" id="passwordFirst" placeholder="Пароль"/>
 						<A.BtnEnter id="SignUpEnter"><a href="../main.html">Зарегистрироваться</a> </A.BtnEnter>
 						<A.ModalFormGroup>
 							<p>Уже есть аккаунт?  <Link to={routes.login} >Войдите здесь</Link></p>
