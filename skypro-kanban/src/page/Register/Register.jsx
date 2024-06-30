@@ -7,12 +7,12 @@ import { useState } from "react"
 
 
 
-export const Register = ({setUser})=>{
+export const Register = ()=>{
 	const [error, setError] = useState("")
 	const[data, setData] = useState({
 		login:'',
-		password:'',
-		userName:'',})
+		name:'',
+		password:''})
 	const navigate = useNavigate()
 
 	const handleReg = (e)=>{
@@ -25,13 +25,12 @@ export const Register = ({setUser})=>{
 			setError('Пароль не был введен')
 			return
 		}
-		if (data.userName === "") {
+		if (data.name === "") {
 			setError('Имя не была введена')
 			return
 		}
 		register(data)
-		.then((res)=>{
-			setUser(res.user)
+		.then(()=>{
 			navigate(routes.main)
 		})
 		.catch((error)=>{
@@ -50,7 +49,7 @@ export const Register = ({setUser})=>{
 					</A.ModalTtl>
 					<A.ModalFormLogin onSubmit={handleReg} id="formLogUp" action="#">
 						<A.ModalInput 
-						onChange={(e)=>setData({...data, userName:e.target.value})} 
+						onChange={(e)=>setData({...data, name:e.target.value})} 
 						type="text" name="first-name" id="first-name" placeholder="Имя"/>
 						<A.ModalInput 
 						onChange={(e)=> setData({...data, login:e.target.value})} 

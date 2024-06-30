@@ -49,6 +49,7 @@ export const MainPage = ({user})=>{
         <Outlet/>
         <PopNewCard/>
       <Header 
+      user={user}
       isOpen={isOpen} setIsOpen={setIsOpen}
       addCard={addCard}
       setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>

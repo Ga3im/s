@@ -72,10 +72,8 @@ const {id} = useParams()
                 <button className="btn-browse__delete _btn-bor _hover03">
                   <a href="#">Удалить задачу</a>
                 </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-              <Link to={routes.main}>Закрыть</Link>
-              </button>
+              </div> 
+              <Link to={routes.main}><button className="btn-browse__close _btn-bg _hover01">Закрыть </button></Link>
             </div>
             <div className="pop-browse__btn-edit _hide">
               <div className="btn-group">

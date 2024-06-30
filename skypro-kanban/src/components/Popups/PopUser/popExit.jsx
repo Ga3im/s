@@ -7,7 +7,7 @@ export const PopExit = ({setUser})=>{
 
 	const handleLogout = ()=>{
 		setUser(false)
-		nav(routes.exit)
+		nav(routes.login)
 	}
     return(
         <div className="pop-exit" id="popExit">

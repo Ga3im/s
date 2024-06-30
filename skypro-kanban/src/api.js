@@ -27,17 +27,17 @@ export async function postCards(card){
     return data
 }
 
-export async function register({login, userName, password}){
+export async function register({login, name, password}){
     const responce = await fetch('https://wedev-api.sky.pro/api/user', {
         method: "POST",
         body: JSON.stringify({
             login,
-            userName,
+            name,
             password,
         })
     })
     if(responce.status === 400){
-        throw new Error('Передан неправильный логин или пароль')
+        throw new Error('Сервер тупит')
     }
     if (!responce.ok) {
         throw new Error('Не удалось загрузить данные')

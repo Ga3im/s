@@ -5,7 +5,7 @@ import { routes } from "../../router/routes.js"
 
 
 
-export const Header = ({isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}) =>{
+export const Header = ({user, isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}) =>{
 	
 	const toggleOpenUser = () =>{
 		setIsOpen(!isOpen)
@@ -28,14 +28,14 @@ export const Header = ({isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}
 						<S.ButtonNewTask
 						onClick={addCard}
 						id="btnMainNew"><a>Создать новую задачу</a></S.ButtonNewTask>
-						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >Ivan Ivanov</S.HeaderUserName>
+						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >{user.name}</S.HeaderUserName>
 						{isOpen && 
-						<S.HeaderPopUser id="user-set-target">
-							<S.UserName>iban</S.UserName>
-							<S.UserMail>ivan.ivanov@gmail.com</S.UserMail>
+						<S.HeaderPopUser>
+							<S.UserName>{user.name}</S.UserName>
+							<S.UserMail>{user.login}</S.UserMail>
 							<S.UserTheme>
 								<p>Темная тема</p>
-								<input checked={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>
+								<input defaultChecked={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>
 							</S.UserTheme>
 							<Link to={routes.exit}><S.ButtonExit type="button">Выйти</S.ButtonExit></Link>
 						</S.HeaderPopUser>}			
