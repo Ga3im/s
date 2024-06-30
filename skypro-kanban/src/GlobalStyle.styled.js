@@ -33,7 +33,6 @@ body {
   height: 100%;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   color: #000000;
-  background-color: ${({theme})=> theme.body}
 }
 `
 

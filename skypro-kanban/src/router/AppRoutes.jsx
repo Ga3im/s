@@ -9,15 +9,16 @@ import { ProtectedRoute } from "./ProtectedRoute.jsx";
 import { ExitPage } from "../page/ExitPage/ExitPage.jsx";
 import { CardPage } from "../page/CardPage/CardPage.jsx";
 
-export const AppRoutes = ({changeTheme, setChangeTheme}) =>{
+
+
+
+export const AppRoutes = () =>{
   const[user, setUser] = useState(null)
     return(
-      <BrowserRouter>
+      <BrowserRouter>  
         <Routes>
           <Route element={<ProtectedRoute user={user}/>}>
             <Route path={routes.main} element={<MainPage
-              changeTheme={changeTheme}
-              setChangeTheme={setChangeTheme}
               user={user}/>}>     
             <Route path={routes.exit} element={<ExitPage  setUser={setUser}/>}/>
             <Route path={routes.card} element={<CardPage/>}/>
