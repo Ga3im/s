@@ -31,7 +31,7 @@ export const Header = ({isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}
 						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >Ivan Ivanov</S.HeaderUserName>
 						{isOpen && 
 						<S.HeaderPopUser id="user-set-target">
-							<S.UserName>Ivanchik</S.UserName>
+							<S.UserName>iban</S.UserName>
 							<S.UserMail>ivan.ivanov@gmail.com</S.UserMail>
 							<S.UserTheme>
 								<p>Темная тема</p>

@@ -10,8 +10,6 @@ import { ExitPage } from "../page/ExitPage/ExitPage.jsx";
 import { CardPage } from "../page/CardPage/CardPage.jsx";
 
 
-
-
 export const AppRoutes = () =>{
   const[user, setUser] = useState(null)
     return(

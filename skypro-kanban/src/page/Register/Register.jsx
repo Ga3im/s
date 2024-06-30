@@ -7,22 +7,36 @@ import { useState } from "react"
 
 
 
-export const Register = ({setUser })=>{
-	const[login, setLogin] = useState()
-	const[userName, setUserName] = useState()
-	const[password, setPassword] = useState()
+export const Register = ({setUser})=>{
+	const [error, setError] = useState("")
+	const[data, setData] = useState({
+		login:'',
+		password:'',
+		userName:'',})
 	const navigate = useNavigate()
 
 	const handleReg = (e)=>{
 		e.preventDefault()
-		register({
-			login:login,
-			userName: userName,
-			password:password
+		if (data.login === '') {
+			setError('Почта не была введена')
+			return
+		}
+		if (data.password === "") {
+			setError('Пароль не был введен')
+			return
+		}
+		if (data.userName === "") {
+			setError('Имя не была введена')
+			return
+		}
+		register(data)
+		.then((res)=>{
+			setUser(res.user)
+			navigate(routes.main)
 		})
-		setIsAuth(true)
-	   navigate(routes.main)
-
+		.catch((error)=>{
+			setError(error.message)
+		})
 		}
     return(
         <>
@@ -34,14 +48,20 @@ export const Register = ({setUser })=>{
 					<A.ModalTtl>
 						<h2>Регистрация</h2>
 					</A.ModalTtl>
-					<A.ModalFormLogin id="formLogUp" action="#">
+					<A.ModalFormLogin onSubmit={handleReg} id="formLogUp" action="#">
 						<A.ModalInput 
-						onChange={(e)=>setUserName(e.target.value)} type="text" name="first-name" id="first-name" placeholder="Имя"/>
+						onChange={(e)=>setData({...data, userName:e.target.value})} 
+						type="text" name="first-name" id="first-name" placeholder="Имя"/>
 						<A.ModalInput 
-						onChange={(e)=> setLogin(e.target.value)} className="modal__input login" type="text" name="login" id="loginReg" placeholder="Эл. почта"/>
+						onChange={(e)=> setData({...data, login:e.target.value})} 
+						className="modal__input login" 
+						type="text" name="login" id="loginReg" placeholder="Эл. почта"/>
 						<A.ModalInput  
-						onChange={(e)=> setPassword(e.target.value)} className="modal__input password-first" type="password" name="password" id="passwordFirst" placeholder="Пароль"/>
-						<A.BtnEnter id="SignUpEnter" onClick={handleReg}> Зарегистрироваться </A.BtnEnter>
+						onChange={(e)=> setData({...data, password:e.target.value})} 
+						className="modal__input password-first" 
+						type="password" name="password" id="passwordFirst" placeholder="Пароль"/>
+						{error && <p>{error}</p>}
+						<A.BtnEnter id="SignUpEnter" type="submit"> Зарегистрироваться </A.BtnEnter>
 						<A.ModalFormGroup>
 							<p>Уже есть аккаунт?<Link to={routes.login} >Войдите здесь</Link></p>
 						</A.ModalFormGroup>

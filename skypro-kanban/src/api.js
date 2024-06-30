@@ -29,9 +29,6 @@ export async function postCards(card){
 
 export async function register({login, userName, password}){
     const responce = await fetch('https://wedev-api.sky.pro/api/user', {
-        headers:{
-            Authorization: `Bearer ${token}`
-        },
         method: "POST",
         body: JSON.stringify({
             login,
@@ -39,6 +36,12 @@ export async function register({login, userName, password}){
             password,
         })
     })
+    if(responce.status === 400){
+        throw new Error('Передан неправильный логин или пароль')
+    }
+    if (!responce.ok) {
+        throw new Error('Не удалось загрузить данные')
+    }
     const data = await responce.json()
     return data
 }
