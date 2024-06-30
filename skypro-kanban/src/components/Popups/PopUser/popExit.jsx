@@ -6,7 +6,7 @@ export const PopExit = ({setUser})=>{
 	const nav = useNavigate()
 
 	const handleLogout = ()=>{
-		setUser(false)
+		setUser(null)
 		nav(routes.login)
 	}
     return(

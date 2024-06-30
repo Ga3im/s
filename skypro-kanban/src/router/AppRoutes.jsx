@@ -17,8 +17,9 @@ export const AppRoutes = () =>{
         <Routes>
           <Route element={<ProtectedRoute user={user}/>}>
             <Route path={routes.main} element={<MainPage
-              user={user}/>}>     
-            <Route path={routes.exit} element={<ExitPage  setUser={setUser}/>}/>
+              user={user}
+              setUser={setUser}/>}>     
+            <Route path={routes.exit} element={<ExitPage setUser={setUser}/>}/>
             <Route path={routes.card} element={<CardPage/>}/>
             </Route>
           </Route>

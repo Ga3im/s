@@ -37,7 +37,7 @@ export async function register({login, name, password}){
         })
     })
     if(responce.status === 400){
-        throw new Error('Сервер тупит')
+        throw new Error('Пользователь с таким логином уже сущетсвует')
     }
     if (!responce.ok) {
         throw new Error('Не удалось загрузить данные')

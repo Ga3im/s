@@ -7,7 +7,7 @@ import { useState } from "react"
 
 
 
-export const Register = ()=>{
+export const Register = ({setUser})=>{
 	const [error, setError] = useState("")
 	const[data, setData] = useState({
 		login:'',
@@ -18,19 +18,29 @@ export const Register = ()=>{
 	const handleReg = (e)=>{
 		e.preventDefault()
 		if (data.login === '') {
+			setTimeout(() => {
+				setError('')
+			}, 1500);
 			setError('Почта не была введена')
 			return
 		}
 		if (data.password === "") {
+			setTimeout(() => {
+				setError('')
+			}, 1500);
 			setError('Пароль не был введен')
 			return
 		}
 		if (data.name === "") {
+			setTimeout(() => {
+				setError('')
+			}, 1500);
 			setError('Имя не была введена')
 			return
 		}
 		register(data)
-		.then(()=>{
+		.then((res)=>{
+			setUser(res.name)
 			navigate(routes.main)
 		})
 		.catch((error)=>{

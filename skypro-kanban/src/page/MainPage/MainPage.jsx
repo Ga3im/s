@@ -8,7 +8,7 @@ import { getCards, postCards } from "../../api"
 import { ThemeProvider } from "styled-components"
 import { light, dark } from '../../theme'
 
-export const MainPage = ({user})=>{
+export const MainPage = ({user, setUser})=>{
     const [cards, setCards] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
@@ -31,8 +31,8 @@ export const MainPage = ({user})=>{
 
    useEffect(()=>{
    getCards(user.token)
-   .then((res)=>
-    {setCards(res.tasks)
+   .then((res)=>{
+    setCards(res.tasks)
   })
    .catch((error)=>{
     setError(error.message)
