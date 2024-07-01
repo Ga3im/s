@@ -12,7 +12,7 @@ export const Column = ({title, cards})=>{
 					cards.map((card)=>(
 					<Card 
 					id={card._id}
-					key={card.userId} 
+					key={card._id} 
 					title={card.title} 
 					topic={card.topic}
 					date={card.date}/>

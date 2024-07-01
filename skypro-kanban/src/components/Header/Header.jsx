@@ -5,8 +5,9 @@ import { routes } from "../../router/routes.js"
 
 
 
-export const Header = ({user, isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}) =>{
+export const Header = ({ isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}) =>{
 	
+	let person = JSON.parse((localStorage.getItem('person')))
 	const toggleOpenUser = () =>{
 		setIsOpen(!isOpen)
 	  }
@@ -28,11 +29,11 @@ export const Header = ({user, isOpen, setIsOpen, addCard, changeTheme, setChange
 						<S.ButtonNewTask
 						onClick={addCard}
 						id="btnMainNew"><a>Создать новую задачу</a></S.ButtonNewTask>
-						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >{user.name}</S.HeaderUserName>
+						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >{person.name}</S.HeaderUserName>
 						{isOpen && 
 						<S.HeaderPopUser>
-							<S.UserName>{user.name}</S.UserName>
-							<S.UserMail>{user.login}</S.UserMail>
+							<S.UserName>{person.name}</S.UserName>
+							<S.UserMail>{person.login}</S.UserMail>
 							<S.UserTheme>
 								<p>Темная тема</p>
 								<input defaultChecked={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>

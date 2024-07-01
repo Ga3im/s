@@ -32,6 +32,7 @@ export const Login = ({ setUser }) => {
     login(data)
       .then((res) => {
         setUser(res.user);
+        localStorage.setItem("person", JSON.stringify((res.user)))
         navigate(routes.main);
       })
       .catch((error) => {

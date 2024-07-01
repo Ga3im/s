@@ -8,7 +8,7 @@ import { getCards, postCards } from "../../api"
 import { ThemeProvider } from "styled-components"
 import { light, dark } from '../../theme'
 
-export const MainPage = ({user, setUser})=>{
+export const MainPage = ({user})=>{
     const [cards, setCards] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
@@ -22,15 +22,13 @@ export const MainPage = ({user, setUser})=>{
     }
 
     const addCard = async ()=>{
-      if (!cards) {
-        return;
-      }  
+      if (!cards) 
+        return  
        const newCard = await postCards(cards)
-        setCards(newCard.tasks)
-     }
-
+        setCards(newCard.tasks)}
+  let person = JSON.parse((localStorage.getItem('person')))
    useEffect(()=>{
-   getCards(user.token)
+   getCards(person.token)
    .then((res)=>{
     setCards(res.tasks)
   })
