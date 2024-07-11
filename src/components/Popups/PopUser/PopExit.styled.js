@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import { ButtonNewTask } from "../../Header/Header.styled";
 
+export const PopExit = styled.div`
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+`
 export const PopExitContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -34,6 +44,9 @@ h2 {
   letter-spacing: -0.4px;
   margin-bottom: 20px;
 }
+`
+export const FormExit = styled.form`
+
 `
 
 export const PopExitGroup = styled.div`

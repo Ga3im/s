@@ -2,12 +2,13 @@ import * as S from "./Header.styled.js"
 import { Container } from "../../GlobalStyle.styled"
 import { Link } from "react-router-dom"
 import { routes } from "../../router/routes.js"
+import { useUserContext } from "../../context/useUserContext.js"
 
 
 
 export const Header = ({ isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}) =>{
 	
-	let person = JSON.parse((localStorage.getItem('person')))
+	const {user} = useUserContext()
 	const toggleOpenUser = () =>{
 		setIsOpen(!isOpen)
 	  }
@@ -26,14 +27,15 @@ export const Header = ({ isOpen, setIsOpen, addCard, changeTheme, setChangeTheme
 						<a href="" target="_self"><img src="/logo_dark.png" alt="logo"/></a>
 					</S.HeaderLogo> */}
 					<S.Nav>
+						<Link to={routes.addcard}> 
 						<S.ButtonNewTask
-						onClick={addCard}
-						id="btnMainNew"><a>Создать новую задачу</a></S.ButtonNewTask>
-						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >{person.name}</S.HeaderUserName>
+						id="btnMainNew">Создать новую задачу</S.ButtonNewTask>
+						</Link>
+						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >{user.name}</S.HeaderUserName>
 						{isOpen && 
 						<S.HeaderPopUser>
-							<S.UserName>{person.name}</S.UserName>
-							<S.UserMail>{person.login}</S.UserMail>
+							<S.UserName>{user.name}</S.UserName>
+							<S.UserMail>{user.login}</S.UserMail>
 							<S.UserTheme>
 								<p>Темная тема</p>
 								<input defaultChecked={changeTheme === "dark"} onClick={onChangeTheme} type="checkbox" className="checkbox" name="checkbox"/>

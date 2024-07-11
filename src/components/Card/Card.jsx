@@ -1,8 +1,10 @@
+import { format, formatDate } from "date-fns"
 import * as S from "./Card.styled"
 import { Link } from "react-router-dom"
 
 
 export const Card = ({title, topic, date, id, key})=>{
+	const creatDate = format(date, 'dd.MM.yyyy')
     return(
         <S.CardItem>
 			<S.Card key={key}>
@@ -34,7 +36,7 @@ export const Card = ({title, topic, date, id, key})=>{
 								</clipPath>
 							</defs>
 						</svg>
-						<p>{date}</p>
+						<p>{creatDate}</p>
 					</S.CardDate>
 				</S.CardContent>
 			</S.Card>

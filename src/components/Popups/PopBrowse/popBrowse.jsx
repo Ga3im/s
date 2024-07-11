@@ -1,28 +1,29 @@
 import { routes } from "../../../router/routes";
 import { Calendar } from "../../Calendar/Calendar";
 import { Link, useParams } from "react-router-dom"
+import * as S from './popBrowse.styled';
 
 
 export const PopBrowse = () => {
 const {id} = useParams()
   return (
     <>
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи {id}</h3>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
+    <S.Browse id="popBrowse">
+      <S.BrowseContainer>
+        <S.BrowseBlock>
+          <S.Content>
+            <S.TopBlock>
+              <h3>Название задачи {id}</h3>
+              <S.CatOrange>
+                <p>Web Design</p>
+              </S.CatOrange>
+            </S.TopBlock>
+            <S.Status>
+              <p>Статус</p>
+              <S.StatusThemes>
+                <S.StatusTheme>
                   <p>Без статуса</p>
-                </div>
+                </S.StatusTheme>
                 <div className="status__theme _gray">
                   <p className="_gray">Нужно сделать</p>
                 </div>
@@ -35,15 +36,14 @@ const {id} = useParams()
                 <div className="status__theme _hide">
                   <p>Готово</p>
                 </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+              </S.StatusThemes>
+            </S.Status>
+            <S.BrowseWrap>
+              <S.BrowseFrom
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
+                <S.FormBlock>
                   <label htmlFor="textArea01" className="subttl">
                     Описание задачи
                   </label>
@@ -54,10 +54,10 @@ const {id} = useParams()
                     readOnly
                     placeholder="Введите описание задачи..."
                   ></textarea>
-                </div>
-              </form>
+                </S.FormBlock>
+              </S.BrowseFrom>
               <Calendar />
-            </div>
+            </S.BrowseWrap>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__theme _orange _active-category">
@@ -94,10 +94,10 @@ const {id} = useParams()
                 <a href="#">Закрыть</a>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </S.Content>
+        </S.BrowseBlock>
+      </S.BrowseContainer>
+    </S.Browse>
     </>
   );
 };

@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom"
 import {routes} from "../../router/routes"
 import { register } from "../../api"
 import { useState } from "react"
+import { useUserContext } from "../../context/useUserContext"
 
 
 
-export const Register = ({setUser})=>{
+export const Register = ()=>{
+	const {login} = useUserContext()
 	const [error, setError] = useState("")
 	const[data, setData] = useState({
 		login:'',
@@ -15,7 +17,7 @@ export const Register = ({setUser})=>{
 		password:''})
 	const navigate = useNavigate()
 
-	const handleReg = (e)=>{
+	const handleReg = async (e)=>{
 		e.preventDefault()
 		if (data.login === '') {
 			setTimeout(() => {
@@ -38,14 +40,15 @@ export const Register = ({setUser})=>{
 			setError('Имя не была введена')
 			return
 		}
-		register(data)
-		.then((res)=>{
-			setUser(res.name)
-			navigate(routes.main)
-		})
-		.catch((error)=>{
+		try{
+		const res = await register(data)
+			login(res.name)
+			localStorage.setItem("user", JSON.stringify((res)))
+       		navigate(routes.main);
+		}
+		catch(error){
 			setError(error.message)
-		})
+		}
 		}
     return(
         <>

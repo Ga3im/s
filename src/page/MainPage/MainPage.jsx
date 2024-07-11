@@ -7,13 +7,16 @@ import {Outlet} from "react-router-dom"
 import { getCards, postCards } from "../../api"
 import { ThemeProvider } from "styled-components"
 import { light, dark } from '../../theme'
+import { useUserContext } from "../../context/useUserContext"
 
-export const MainPage = ({user})=>{
+export const MainPage = ()=>{
     const [cards, setCards] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     const [changeTheme, setChangeTheme] = useState("light")
     const [isOpen, setIsOpen] = useState(false)
+  const {user} = useUserContext()
+
 
     const closeUserInfo = ()=>{
       if (isOpen) {
@@ -26,9 +29,8 @@ export const MainPage = ({user})=>{
         return  
        const newCard = await postCards(cards)
         setCards(newCard.tasks)}
-  let person = JSON.parse((localStorage.getItem('person')))
    useEffect(()=>{
-   getCards(person.token)
+   getCards(user.token)
    .then((res)=>{
     setCards(res.tasks)
   })
@@ -47,9 +49,7 @@ export const MainPage = ({user})=>{
         <Outlet/>
         <PopNewCard/>
       <Header 
-      user={user}
       isOpen={isOpen} setIsOpen={setIsOpen}
-      addCard={addCard}
       setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>
         {isLoading? 
         <img className='loader' src="public/loading.gif" alt="" />

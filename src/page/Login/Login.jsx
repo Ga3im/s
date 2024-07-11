@@ -3,9 +3,11 @@ import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled";
 import { routes } from "../../router/routes";
 import * as S from "./Login.styled";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../api";
+import { signIn } from "../../api";
+import { useUserContext } from "../../context/useUserContext";
 
-export const Login = ({ setUser }) => {
+export const Login = () => {
+  const {login} = useUserContext()
   const [error, setError] = useState("");
   const [data, setData] = useState({
     login: "",
@@ -13,7 +15,7 @@ export const Login = ({ setUser }) => {
   });
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (data.login === "") {
 		setTimeout(() => {
@@ -29,15 +31,15 @@ export const Login = ({ setUser }) => {
       setError("Пароль не был введен");
       return;
     }
-    login(data)
-      .then((res) => {
-        setUser(res.user);
-        localStorage.setItem("person", JSON.stringify((res.user)))
+   try{
+        const res = await signIn(data)
+        login(res.user);
+        localStorage.setItem("user", JSON.stringify((res)))
         navigate(routes.main);
-      })
-      .catch((error) => {
+      }
+      catch(error) {
         setError(error.message);
-      });
+      };
   };
 
   return (

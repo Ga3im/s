@@ -97,3 +97,10 @@ export const CalenarStyle = css`
  width: 182px;
  margin-bottom: 20px;
 `
+
+export const Subttl = css`
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+`

@@ -46,7 +46,7 @@ export async function register({login, name, password}){
     return data
 }
 
-export async function login({login, password}){
+export async function signIn({login, password}){
     const responce = await fetch('https://wedev-api.sky.pro/api/user/login', {
         method: "POST",
         body: JSON.stringify({
