@@ -1,3 +1,4 @@
+import { routes } from "../../router/routes"
 import * as S from "./Card.styled"
 import { Link } from "react-router-dom"
 
