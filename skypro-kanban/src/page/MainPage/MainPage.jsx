@@ -1,61 +1,63 @@
-import { useState, useEffect, useRef } from "react"
-import { cardList } from "../../date"
+import { useState, useEffect } from "react"
 import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled"
 import {PopNewCard} from "../../components/Popups/PopNewCard/PopNewCard"
 import {Header} from "../../components/Header/Header"
 import {Main} from "../../components/Main/Main"
 import {Outlet} from "react-router-dom"
-import { ThemeProvider } from 'styled-components'
+import { getCards, postCards } from "../../api"
+import { ThemeProvider } from "styled-components"
 import { light, dark } from '../../theme'
 
-
-export const MainPage = ()=>{
-    const [cards, setCards] = useState(cardList)
-    const [isLoading, setIsLoading] =useState(false)
+export const MainPage = ({user})=>{
+    const [cards, setCards] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState()
     const [changeTheme, setChangeTheme] = useState("light")
-	  const [isOpen, setIsOpen] = useState(false)
-    const closeRef = useRef(null)
- 
-    const toggleOpenUser = () =>{
-      setIsOpen(!isOpen)
-    }
-    const closeUserInf = () =>{
-      if(isOpen) {
-      setIsOpen(!isOpen)
-    }
+    const [isOpen, setIsOpen] = useState(false)
+
+    const closeUserInfo = ()=>{
+      if (isOpen) {
+        setIsOpen(!isOpen)
+      }
     }
 
-    const addCard = ()=>{
-        const newCard = {
-         id:  cards.length + 1,
-         topic:"Web Design" ,
-         title:"Новая задача",
-         date: "8.06.24",
-         status:"Без статуса",
-        }
-        setCards([...cards, newCard])
-     }
-
+    const addCard = async ()=>{
+      if (!cards) 
+        return  
+       const newCard = await postCards(cards)
+        setCards(newCard.tasks)}
+  let person = JSON.parse((localStorage.getItem('person')))
    useEffect(()=>{
-   setIsLoading(true)
-   setTimeout(()=>{
-     setIsLoading(false)
-   }, 0)
-     
+   getCards(person.token)
+   .then((res)=>{
+    setCards(res.tasks)
+  })
+   .catch((error)=>{
+    setError(error.message)
+   })
+   .finally(()=>{
+    setIsLoading(false)
+   })
    }, [])
 
     return(
-      <ThemeProvider theme={changeTheme === "light" ? light : dark}>
+     <ThemeProvider theme={changeTheme === "light" ? light : dark}>
      <GlobalStyle/>
-     <Wrapper onClick={closeUserInf}>
+     <Wrapper onClick={closeUserInfo}>
         <Outlet/>
         <PopNewCard/>
-      <Header toggleOpenUser={toggleOpenUser} isOpen={isOpen} setIsOpen={setIsOpen} addCard={addCard} setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>
-  {isLoading? <img className='loader' src="public/loading.gif" alt="" /> : 	 
-  <Main  cards={cards}/>
-}
-      </Wrapper>
-      </ThemeProvider>
+      <Header 
+      user={user}
+      isOpen={isOpen} setIsOpen={setIsOpen}
+      addCard={addCard}
+      setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>
+        {isLoading? 
+        <img className='loader' src="public/loading.gif" alt="" />
+        : error?
+        <p>{error}</p> 
+        : <Main cards={cards}/>}
+        </Wrapper>
+        </ThemeProvider>
 
     )
 }

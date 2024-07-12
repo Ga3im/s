@@ -9,20 +9,23 @@ import { ProtectedRoute } from "./ProtectedRoute.jsx";
 import { ExitPage } from "../page/ExitPage/ExitPage.jsx";
 import { CardPage } from "../page/CardPage/CardPage.jsx";
 
+
 export const AppRoutes = () =>{
-  const[isAuth, setIsAuth] = useState(false)
+  const[user, setUser] = useState(null)
     return(
-      <BrowserRouter>
+      <BrowserRouter>  
         <Routes>
-          <Route element={<ProtectedRoute isAuth={isAuth}/>}>
-            <Route path={routes.main} element={<MainPage/>}>     
-            <Route path={routes.exit} element={<ExitPage  setIsAuth={setIsAuth}/>}/>
+          <Route element={<ProtectedRoute user={user}/>}>
+            <Route path={routes.main} element={<MainPage
+              user={user}
+              setUser={setUser}/>}>     
+            <Route path={routes.exit} element={<ExitPage setUser={setUser}/>}/>
             <Route path={routes.card} element={<CardPage/>}/>
             </Route>
           </Route>
-            <Route path={routes.login} element={<Login setIsAuth={setIsAuth}/>}/>                 
+            <Route path={routes.login} element={<Login setUser={setUser}/>}/>                 
             <Route path={routes.notFound} element={<NotFound/>}/>     
-            <Route path={routes.register} element={<Register/>}/>     
+            <Route path={routes.register} element={<Register setUser={setUser}/>}/>     
         </Routes>  
       </BrowserRouter>   
     )

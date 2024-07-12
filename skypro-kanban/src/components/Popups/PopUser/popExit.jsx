@@ -2,12 +2,12 @@ import { routes } from "../../../router/routes"
 import { Link, useNavigate } from "react-router-dom"
 import { ButtonExitNo, ButtonExitYes, PopExitContainer, PopExitBlock, PopExitGroup, ExitTtl } from "./PopExit.styled"
 
-export const PopExit = ({setIsAuth})=>{
+export const PopExit = ({setUser})=>{
 	const nav = useNavigate()
 
 	const handleLogout = ()=>{
-		setIsAuth(false)
-		nav(routes.exit)
+		setUser(null)
+		nav(routes.login)
 	}
     return(
         <div className="pop-exit" id="popExit">

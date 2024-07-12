@@ -4,8 +4,9 @@ import { Link, useParams } from "react-router-dom"
 
 
 export const PopBrowse = () => {
-  const {id} = useParams()
+const {id} = useParams()
   return (
+    <>
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
         <div className="pop-browse__block">
@@ -71,10 +72,8 @@ export const PopBrowse = () => {
                 <button className="btn-browse__delete _btn-bor _hover03">
                   <a href="#">Удалить задачу</a>
                 </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-              <Link to={routes.main}>Закрыть</Link>
-              </button>
+              </div> 
+              <Link to={routes.main}><button className="btn-browse__close _btn-bg _hover01">Закрыть </button></Link>
             </div>
             <div className="pop-browse__btn-edit _hide">
               <div className="btn-group">
@@ -99,5 +98,6 @@ export const PopBrowse = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
