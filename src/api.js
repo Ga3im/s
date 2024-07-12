@@ -13,20 +13,6 @@ export async function getCards(token){
     return data
 }
 
-export async function postCards(card){
-    const responce = await fetch('https://wedev-api.sky.pro/api/kanban', {
-        headers:{
-            Authorization: `Bearer ${token}`
-        },
-        method: "POST",
-        body: JSON.stringify({
-            card
-        })
-    })
-    const data = await responce.json()
-    return data
-}
-
 export async function register({login, name, password}){
     const responce = await fetch('https://wedev-api.sky.pro/api/user', {
         method: "POST",
@@ -60,6 +46,17 @@ export async function signIn({login, password}){
     if (!responce.ok) {
         throw new Error('Не удалось загрузить данные')
     }
+    const data = await responce.json()
+    return data
+}
+
+export const addTask = async ()=>{
+    const responce = await fetch('https://wedev-api.sky.pro/api/kanban',{
+        method: 'POST',
+        body: JSON.stringify({
+            description,
+        })
+    })
     const data = await responce.json()
     return data
 }

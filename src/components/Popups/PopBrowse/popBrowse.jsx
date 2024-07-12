@@ -24,18 +24,6 @@ const {id} = useParams()
                 <S.StatusTheme>
                   <p>Без статуса</p>
                 </S.StatusTheme>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
               </S.StatusThemes>
             </S.Status>
             <S.BrowseWrap>
@@ -58,12 +46,7 @@ const {id} = useParams()
               </S.BrowseFrom>
               <Calendar />
             </S.BrowseWrap>
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
+            
             <div className="pop-browse__btn-browse ">
               <div className="btn-group">
                 <button className="btn-browse__edit _btn-bor _hover03">

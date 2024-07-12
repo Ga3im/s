@@ -3,11 +3,13 @@ import * as S from "./Card.styled"
 import { Link } from "react-router-dom"
 
 
-export const Card = ({title, topic, date, id, key})=>{
+export const Card = ({title, topic, date, id})=>{
 	const creatDate = format(date, 'dd.MM.yyyy')
-    return(
-        <S.CardItem>
-			<S.Card key={key}>
+    return( 
+		<>
+        <S.CardItem
+		draggable={true}>
+			<S.Card>
 				<S.CardGroup>
 					<S.CardTheme $color={topic}>
 						<p>{topic}</p>
@@ -41,5 +43,6 @@ export const Card = ({title, topic, date, id, key})=>{
 				</S.CardContent>
 			</S.Card>
 		</S.CardItem>
+		</>
     )
 }

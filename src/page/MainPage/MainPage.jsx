@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled"
-import {PopNewCard} from "../../components/Popups/PopNewCard/PopNewCard"
 import {Header} from "../../components/Header/Header"
 import {Main} from "../../components/Main/Main"
 import {Outlet} from "react-router-dom"
-import { getCards, postCards } from "../../api"
 import { ThemeProvider } from "styled-components"
 import { light, dark } from '../../theme'
+import { getCards } from "../../api"
 import { useUserContext } from "../../context/useUserContext"
 
 export const MainPage = ()=>{
@@ -15,8 +14,7 @@ export const MainPage = ()=>{
     const [error, setError] = useState()
     const [changeTheme, setChangeTheme] = useState("light")
     const [isOpen, setIsOpen] = useState(false)
-  const {user} = useUserContext()
-
+    const {user} = useUserContext()
 
     const closeUserInfo = ()=>{
       if (isOpen) {
@@ -24,11 +22,6 @@ export const MainPage = ()=>{
       }
     }
 
-    const addCard = async ()=>{
-      if (!cards) 
-        return  
-       const newCard = await postCards(cards)
-        setCards(newCard.tasks)}
    useEffect(()=>{
    getCards(user.token)
    .then((res)=>{

@@ -6,7 +6,7 @@ import { useUserContext } from "../../context/useUserContext.js"
 
 
 
-export const Header = ({ isOpen, setIsOpen, addCard, changeTheme, setChangeTheme}) =>{
+export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme}) =>{
 	
 	const {user} = useUserContext()
 	const toggleOpenUser = () =>{
