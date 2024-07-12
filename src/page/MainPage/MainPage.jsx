@@ -47,7 +47,6 @@ export const MainPage = ()=>{
      <GlobalStyle/>
      <Wrapper onClick={closeUserInfo}>
         <Outlet/>
-        <PopNewCard/>
       <Header 
       isOpen={isOpen} setIsOpen={setIsOpen}
       setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>

@@ -9,25 +9,28 @@ import { ExitPage } from "../page/ExitPage/ExitPage.jsx";
 import { CardPage } from "../page/CardPage/CardPage.jsx";
 import { UserProvider } from "../context/UserContext.jsx";
 import { AddCardPage } from "../page/AddCardPage/AddCardPage.jsx";
+import { DataCardProvider } from "../context/DataCardContext.jsx";
 
 
 export const AppRoutes = () =>{
     return(
       <UserProvider>
+        {/* <DataCardProvider> */}
         <BrowserRouter>  
           <Routes>
             <Route element={<ProtectedRoute/>}>
-              <Route path={routes.main} element={<MainPage/>}>     
+              <Route path={routes.main} element={<MainPage/>}>  
+              <Route path={routes.addcard} element={<AddCardPage/>}/>
               <Route path={routes.exit} element={<ExitPage/>}/>
               <Route path={routes.card} element={<CardPage/>}/>
-              <Route path={routes.addcard} element={<AddCardPage/>}/>
               </Route>
             </Route>
               <Route path={routes.login} element={<Login />}/>                 
               <Route path={routes.notFound} element={<NotFound/>}/>     
               <Route path={routes.register} element={<Register />}/>     
           </Routes>  
-        </BrowserRouter>   
+        </BrowserRouter>
+        {/* </DataCardProvider>    */}
       </UserProvider>
     )
 }

@@ -2,6 +2,7 @@ import { Card } from "../Card/Card"
 import * as S  from "./Column.styled"
 
 
+
 export const Column = ({title, cards})=>{
     return(
         <S.MainColumn >
@@ -9,14 +10,15 @@ export const Column = ({title, cards})=>{
 				<p>{title}</p>
 			</S.ColumnTitle>
 			<S.Cards>{
-					cards.map((card)=>(
+				cards.map((card)=>(
 					<Card 
 					id={card._id}
 					key={card._id} 
 					title={card.title} 
 					topic={card.topic}
 					date={card.date}/>
-				))}			
+				))
+					}			
 			</S.Cards>
 		</S.MainColumn>	
     )

@@ -29,7 +29,9 @@ export const Header = ({ isOpen, setIsOpen, addCard, changeTheme, setChangeTheme
 					<S.Nav>
 						<Link to={routes.addcard}> 
 						<S.ButtonNewTask
-						id="btnMainNew">Создать новую задачу</S.ButtonNewTask>
+						id="btnMainNew">
+						Создать новую задачу
+						</S.ButtonNewTask>
 						</Link>
 						<S.HeaderUserName $isOpen={isOpen} onClick={toggleOpenUser} >{user.name}</S.HeaderUserName>
 						{isOpen && 

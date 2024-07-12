@@ -1,8 +1,7 @@
 import { createContext, useEffect } from "react";
-import { useUser } from "../useUser";
+import { useUser } from "../hooks/useUser";
 
 export const UserContext = createContext(null)
-export const CardContext = createContext(null)
 
 export const UserProvider = ({children})=>{
     
