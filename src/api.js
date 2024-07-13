@@ -54,7 +54,10 @@ export const addTask = async ()=>{
     const responce = await fetch('https://wedev-api.sky.pro/api/kanban',{
         method: 'POST',
         body: JSON.stringify({
+            cardName,
             description,
+            category,
+            date,
         })
     })
     const data = await responce.json()

@@ -1,25 +1,14 @@
-import { createContext, useEffect } from "react";
-import { Card } from "../components/Card/Card.styled";
+import { createContext, useState } from "react";
 
 export const DataCardContext = createContext(null)
 
-export const DataCardProvider = ({child})=>{
-    const {title, topic, id, cards, date } = useDataCard()
-    useEffect(()=>{
-        cards.map((card)=>(
-            <Card
-            cards={cards}
-            id={card._id}
-            title={card.title} 
-            topic={card.topic}
-            date={card.date}
-            />
-        ))
-    },[])
+export const DataCardProvider = ({children})=>{
+    const [cards, setCards] = useState([])
+
 
     return(
-        <DataCardContext.Provider value={{topic,date, cards, title, id}}>
-            {child}
+        <DataCardContext.Provider value={{cards, setCards}}>
+            {children}
         </DataCardContext.Provider>
     )
 }

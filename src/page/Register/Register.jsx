@@ -60,7 +60,7 @@ export const Register = ()=>{
 					<A.ModalTtl>
 						<h2>Регистрация</h2>
 					</A.ModalTtl>
-					<A.ModalFormLogin onSubmit={handleReg} id="formLogUp" action="#">
+					<A.ModalFormLogin onSubmit={handleReg}>
 						<A.ModalInput 
 						onChange={(e)=>setData({...data, name:e.target.value})} 
 						type="text" name="first-name" id="first-name" placeholder="Имя"/>
@@ -73,7 +73,7 @@ export const Register = ()=>{
 						className="modal__input password-first" 
 						type="password" name="password" id="passwordFirst" placeholder="Пароль"/>
 						{error && <p>{error}</p>}
-						<A.BtnEnter id="SignUpEnter" type="submit"> Зарегистрироваться </A.BtnEnter>
+						<A.BtnEnter type="submit"> Зарегистрироваться </A.BtnEnter>
 						<A.ModalFormGroup>
 							<p>Уже есть аккаунт?<Link to={routes.login} >Войдите здесь</Link></p>
 						</A.ModalFormGroup>

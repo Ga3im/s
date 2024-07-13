@@ -12,7 +12,6 @@ export const Column = ({title, cards})=>{
 			<S.Cards>{
 				cards.map((card)=>(
 					<Card 
-					cards={cards}
 					id={card._id}
 					title={card.title} 
 					topic={card.topic}

@@ -15,7 +15,7 @@ import { DataCardProvider } from "../context/DataCardContext.jsx";
 export const AppRoutes = () =>{
     return(
       <UserProvider>
-        {/* <DataCardProvider> */}
+        <DataCardProvider>
         <BrowserRouter>  
           <Routes>
             <Route element={<ProtectedRoute/>}>
@@ -30,7 +30,7 @@ export const AppRoutes = () =>{
               <Route path={routes.register} element={<Register />}/>     
           </Routes>  
         </BrowserRouter>
-        {/* </DataCardProvider>    */}
+        </DataCardProvider>   
       </UserProvider>
     )
 }

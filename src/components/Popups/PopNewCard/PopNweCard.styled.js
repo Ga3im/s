@@ -165,6 +165,7 @@ export const CatOrange = styled.div`
   opacity: 0.4;
  opacity: 1 !important;
  background-color: #FFE4C2;
+ cursor: pointer;
  P{
     font-size: 14px;
   font-weight: 600;
@@ -183,6 +184,8 @@ export const CatGreen = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
+ cursor: pointer;
+
   p{
   font-size: 14px;
   font-weight: 600;
@@ -200,6 +203,8 @@ export const CatPurple = styled.div`
   margin-right: 7px;
   opacity: 0.4;
 background-color: #E9D4FF;
+cursor: pointer;
+
 p{
   font-size: 14px;
   font-weight: 600;

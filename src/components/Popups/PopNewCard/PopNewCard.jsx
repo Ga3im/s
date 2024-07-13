@@ -2,11 +2,37 @@ import { Calendar } from "../../Calendar/Calendar";
 import { Link } from "react-router-dom";
 import * as S from "./PopNweCard.styled";
 import { routes } from "../../../router/routes";
+import { addTask } from "../../../api";
+import { useState } from "react";
 
+// const [addCard, setAddCard] = useState({
+//   cardName:'',
+//   description: '',
+//   // category: '',
+//   // date: '',
+// })
+const HandleAddNewCard = async (e)=>{
+  e.preventDefault()
+  await addTask()
+  .then((res)=>{
+    console.log(res)
+  })
+}
 
+export const HandleOrange =()=>{
+console.log('orange')
+}
+
+export const HandleGreen =()=>{
+  console.log('green')
+  }
+
+  export const HandlePurple =()=>{
+    console.log('purple')
+    }
 export const PopNewCard = () => {
   return (
-    <S.PopNewCard id="popNewCard">
+    <S.PopNewCard onSubmit={HandleAddNewCard}>
       <S.NewCardContainer>
         <S.NewCardBlock>
           <S.NewCardContent>
@@ -24,6 +50,7 @@ export const PopNewCard = () => {
                     Название задачи
                   </S.Label>
                   <S.NewInput
+                    // onChange={(e)=> setAddCard({...addCard, cardName:e.target.value})}
                     type="text"
                     name="name"
                     id="formTitle"
@@ -36,6 +63,7 @@ export const PopNewCard = () => {
                     Описание задачи
                   </S.Label>
                   <S.TextArea
+                    // onChange={(e)=> setAddCard({...addCard, description: e.target.value})}
                     name="text"
                     id="textArea"
                     placeholder="Введите описание задачи..."
@@ -47,20 +75,22 @@ export const PopNewCard = () => {
             <S.Categorios>
               <p>Категория</p>
               <S.CatTheme>
-                <S.CatOrange >
+                <S.CatOrange onClick={HandleOrange}>
                   <p>Web Design</p>
                 </S.CatOrange>
-                <S.CatGreen>
+                <S.CatGreen onClick={HandleGreen}>
                   <p>Research</p>
                 </S.CatGreen>
-                <S.CatPurple>
+                <S.CatPurple onClick={HandlePurple}>
                   <p>Copywriting</p>
                 </S.CatPurple>
               </S.CatTheme>
             </S.Categorios>
-            <S.BtnNewCreate id="btnCreate">
+            <Link to={routes.main}>
+            <S.BtnNewCreate type="submit">
               Создать задачу
             </S.BtnNewCreate>
+            </Link>
           </S.NewCardContent>
         </S.NewCardBlock>
       </S.NewCardContainer>

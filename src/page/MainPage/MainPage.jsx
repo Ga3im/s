@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled"
 import {Header} from "../../components/Header/Header"
 import {Main} from "../../components/Main/Main"
@@ -8,9 +8,10 @@ import { light, dark } from '../../theme'
 import { getCards } from "../../api"
 import { useUserContext } from "../../context/useUserContext"
 import { Loader } from "../Loader/LoaderPage"
+import { DataCardContext } from "../../context/DataCardContext"
 
 export const MainPage = ()=>{
-    const [cards, setCards] = useState([])
+  const {cards, setCards} = useContext(DataCardContext)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     const [changeTheme, setChangeTheme] = useState("light")
@@ -22,7 +23,6 @@ export const MainPage = ()=>{
         setIsOpen(!isOpen)
       }
     }
-
    useEffect(()=>{
    getCards(user.token)
    .then((res)=>{
