@@ -6,10 +6,11 @@ import { addTask } from "../../../api";
 import { useState } from "react";
 
 // const [addCard, setAddCard] = useState({
-//   cardName:'',
-//   description: '',
-//   // category: '',
-//   // date: '',
+//title: "",
+// topic: "",
+// status: "",
+// description: "",
+// date:"",
 // })
 const HandleAddNewCard = async (e)=>{
   e.preventDefault()
