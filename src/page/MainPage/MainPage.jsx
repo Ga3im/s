@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components"
 import { light, dark } from '../../theme'
 import { getCards } from "../../api"
 import { useUserContext } from "../../context/useUserContext"
+import { Loader } from "../Loader/LoaderPage"
 
 export const MainPage = ()=>{
     const [cards, setCards] = useState([])
@@ -44,7 +45,7 @@ export const MainPage = ()=>{
       isOpen={isOpen} setIsOpen={setIsOpen}
       setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>
         {isLoading? 
-        <img className='loader' src="public/loading.gif" alt="" />
+        <Loader/>
         : error?
         <p>{error}</p> 
         : <Main cards={cards}/>}

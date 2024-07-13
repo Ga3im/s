@@ -6,5 +6,3 @@
     "Готово",
   ];
 
-// export const cardList = []
-

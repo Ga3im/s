@@ -104,3 +104,29 @@ export const Subttl = css`
   font-weight: 600;
   line-height: 1;
 `
+
+export const Loader1 = styled.div`
+width:82px;
+height: 20px;
+padding: 5px 14px;
+border-radius: 18px;
+background: linear-gradient(45deg, #c1cddc 0%, #e9eef7 100%)
+`
+
+export const Loader2 = styled.div`
+width:18px;
+height: 4px;
+background: linear-gradient(45deg, #c1cddc 0%, #e9eef7 100%)
+`
+
+export const Loader3 = styled.div`
+width:113px;
+height: 13px;
+background: linear-gradient(45deg, #c1cddc 0%, #e9eef7 100%)
+`
+
+export const Loader4 = styled.div`
+width:58px;
+height: 13px;
+background: linear-gradient(45deg, #c1cddc 0%, #e9eef7 100%)
+`
