@@ -1,56 +1,60 @@
-import { useContext, useEffect, useState } from "react"
-import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled"
-import {Header} from "../../components/Header/Header"
-import {Main} from "../../components/Main/Main"
-import {Outlet} from "react-router-dom"
-import { ThemeProvider } from "styled-components"
-import { light, dark } from '../../theme'
-import { getCards } from "../../api"
-import { useUserContext } from "../../context/useUserContext"
-import { Loader } from "../Loader/LoaderPage"
-import { DataCardContext } from "../../context/DataCardContext"
+import { useContext, useEffect, useState } from "react";
+import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled";
+import { Header } from "../../components/Header/Header";
+import { Main } from "../../components/Main/Main";
+import { Outlet } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { light, dark } from "../../theme";
+import { getCards } from "../../api";
+import { useUserContext } from "../../context/useUserContext";
+import { Loader } from "../Loader/LoaderPage";
+import { DataCardContext } from "../../context/DataCardContext";
 
-export const MainPage = ()=>{
-  const {cards, setCards} = useContext(DataCardContext)
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState()
-    const [changeTheme, setChangeTheme] = useState("light")
-    const [isOpen, setIsOpen] = useState(false)
-    const {user} = useUserContext()
+export const MainPage = () => {
+  const { cards, setCards } = useContext(DataCardContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
+  const [changeTheme, setChangeTheme] = useState("light");
+  const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUserContext();
 
-    const closeUserInfo = ()=>{
-      if (isOpen) {
-        setIsOpen(!isOpen)
-      }
+  const closeUserInfo = () => {
+    if (isOpen) {
+      setIsOpen(!isOpen);
     }
-   useEffect(()=>{
-   getCards(user.token)
-   .then((res)=>{
-    setCards(res.tasks)
-  })
-   .catch((error)=>{
-    setError(error.message)
-   })
-   .finally(()=>{
-    setIsLoading(false)
-   })
-   }, [])
+  };
+  useEffect(() => {
+    getCards(user.token)
+      .then((res) => {
+        setCards(res.tasks);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
 
-    return(
-     <ThemeProvider theme={changeTheme === "light" ? light : dark}>
-     <GlobalStyle/>
-     <Wrapper onClick={closeUserInfo}>
-        <Outlet/>
-      <Header 
-      isOpen={isOpen} setIsOpen={setIsOpen}
-      setChangeTheme={setChangeTheme} changeTheme={changeTheme}/>
-        {isLoading? 
-        <Loader/>
-        : error?
-        <p>{error}</p> 
-        : <Main cards={cards}/>}
-        </Wrapper>
-        </ThemeProvider>
-
-    )
-}
+  return (
+    <ThemeProvider theme={changeTheme === "light" ? light : dark}>
+      <GlobalStyle />
+      <Wrapper onClick={closeUserInfo}>
+        <Outlet />
+        <Header
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          setChangeTheme={setChangeTheme}
+          changeTheme={changeTheme}
+        />
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <Main cards={cards} />
+        )}
+      </Wrapper>
+    </ThemeProvider>
+  );
+};

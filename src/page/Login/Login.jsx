@@ -34,7 +34,6 @@ export const Login = () => {
    try{
         const res = await signIn(data)
         login(res.user);
-        localStorage.setItem("user", JSON.stringify((res)))
         navigate(routes.main);
       }
       catch(error) {

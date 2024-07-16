@@ -13,7 +13,7 @@ const {id} = useParams()
         <S.BrowseBlock>
           <S.Content>
             <S.TopBlock>
-              <h3>Название задачи {id}</h3>
+              <h3>Название задачи</h3>
               <S.CatOrange>
                 <p>Web Design</p>
               </S.CatOrange>
@@ -23,6 +23,18 @@ const {id} = useParams()
               <S.StatusThemes>
                 <S.StatusTheme>
                   <p>Без статуса</p>
+                </S.StatusTheme>
+                <S.StatusTheme>
+                  <p>Нужно сделать</p>
+                </S.StatusTheme>
+                <S.StatusTheme>
+                  <p>В работе</p>
+                </S.StatusTheme>
+                <S.StatusTheme>
+                  <p>Тестирование</p>
+                </S.StatusTheme>
+                <S.StatusTheme>
+                  <p>Готово</p>
                 </S.StatusTheme>
               </S.StatusThemes>
             </S.Status>

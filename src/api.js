@@ -50,16 +50,32 @@ export async function signIn({login, password}){
     return data
 }
 
-export const addTask = async ()=>{
+export const addTask = async ({
+    token,
+    title,
+    topic,
+    statut,
+    description,
+    date})=>{
     const responce = await fetch('https://wedev-api.sky.pro/api/kanban',{
         method: 'POST',
+        headers:{
+            Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify({
-            cardName,
+            title,
+            topic,
+            statut,
             description,
-            category,
             date,
         })
     })
+    if(responce.status === 400){
+        throw new Error('Данные не в формате JSON')
+    }
+    if (!responce.ok) {
+        throw new Error('Не удалось загрузить данные')
+    }
     const data = await responce.json()
     return data
 }

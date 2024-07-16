@@ -11,7 +11,7 @@ export const Loader = ()=>{
  <Main>
 			<Container>	
 				<MainBlock>
-					<MainContent>
+					<MainContent key={1}>
                     {statusList.map((status)=>{
                         return(
                     <MainColumn >

@@ -1,7 +1,5 @@
-import { PopBrowse } from "../../components/Popups/PopBrowse/popBrowse"
+import { PopBrowse } from "../../components/Popups/PopBrowse/popBrowse";
 
-export const CardPage = ()=>{
-    return(
-        <PopBrowse/>
-    )
-}
+export const CardPage = () => {
+  return <PopBrowse />;
+};

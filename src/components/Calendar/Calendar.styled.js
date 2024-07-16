@@ -8,8 +8,6 @@ export const StyledDayPicker = styled(DayPicker)`
 
    .rdp-day_today:not(.rdp-day_outside) {
     font-weight: bold;
-    background: #94A6BE;
-    color: #ffffff;
 }
 .rdp-caption_label {
     font-size: 14px;
@@ -17,6 +15,9 @@ export const StyledDayPicker = styled(DayPicker)`
 .rdp-tbody {
     font-size: 10px;
 }
+
+.rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
+    background-color:#94A6BE } ;
 `
 export const Date = styled.p`
 font-weight: 600;

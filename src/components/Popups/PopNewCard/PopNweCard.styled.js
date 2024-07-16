@@ -149,15 +149,15 @@ p{
 }
 `
 
-export const CatTheme = styled.div`
+export const CatThemeForm = styled.form`
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
 `
-export const CatOrange = styled.div`
+export const CatOrange = styled.input`
   display: inline-block;
-  width: auto;
+  width: 120px;
   height: 30px;
   padding: 8px 20px;
   border-radius: 24px;
@@ -166,50 +166,46 @@ export const CatOrange = styled.div`
  opacity: 1 !important;
  background-color: #FFE4C2;
  cursor: pointer;
- P{
-    font-size: 14px;
-  font-weight: 600;
-  line-height: 14px;
-  white-space: nowrap;
+ border: none;
+
+    outline: 0;
+    outline-offset: 0;
+&::placeholder{
     ${Orange}
- }
+}
 `
-export const CatGreen = styled.div`
+export const CatGreen = styled.input`
  background-color: #B4FDD1;
  color: #06B16E;
  display: inline-block;
-  width: auto;
+  width: 100px;
   height: 30px;
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
+  border: none;
  cursor: pointer;
-
-  p{
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 14px;
-  white-space: nowrap;
+ outline: 0;
+ outline-offset: 0;
+&::placeholder{
     ${Green}
-  }
+}
 `
-export const CatPurple = styled.div`
+export const CatPurple = styled.input`
  display: inline-block;
-  width: auto;
-  height: 30px;
+ width: 115px;
+ height: 30px;
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
+  border: none;
 background-color: #E9D4FF;
+outline: 0;
+outline-offset: 0;
 cursor: pointer;
-
-p{
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 14px;
-  white-space: nowrap;
+&::placeholder{
     ${Purple}
 }
 `
