@@ -130,3 +130,10 @@ width:58px;
 height: 13px;
 background: linear-gradient(45deg, #c1cddc 0%, #e9eef7 100%)
 `
+export const Opacity1 = css`
+opacity: 1;
+`
+
+export const Opacity2 = css`
+opacity: 0.4;
+`

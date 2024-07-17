@@ -7,7 +7,7 @@ import { signIn } from "../../api";
 import { useUserContext } from "../../context/useUserContext";
 
 export const Login = () => {
-  const {login} = useUserContext()
+  const { login } = useUserContext();
   const [error, setError] = useState("");
   const [data, setData] = useState({
     login: "",
@@ -18,27 +18,26 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (data.login === "") {
-		setTimeout(() => {
-			setError('')
-		}, 1500);
-		setError("Логин не был введен");
+      setTimeout(() => {
+        setError("");
+      }, 1500);
+      setError("Логин не был введен");
       return;
     }
     if (data.password === "") {
-		setTimeout(() => {
-			setError('')
-		}, 1500);
+      setTimeout(() => {
+        setError("");
+      }, 1500);
       setError("Пароль не был введен");
       return;
     }
-   try{
-        const res = await signIn(data)
-        login(res.user);
-        navigate(routes.main);
-      }
-      catch(error) {
-        setError(error.message);
-      };
+    try {
+      const res = await signIn(data);
+      login(res.user);
+      navigate(routes.main);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -54,20 +53,25 @@ export const Login = () => {
               <S.ModalFormLogin
                 onSubmit={handleLogin}
                 id="formLogIn"
-                action="#">
+                action="#"
+              >
                 <S.ModalInput
                   onChange={(e) => setData({ ...data, login: e.target.value })}
                   type="text"
                   name="login"
                   id="formlogin"
-                  placeholder="Эл. почта"/>
+                  placeholder="Эл. почта"
+                />
                 <S.ModalInput
-                  onChange={(e) =>setData({ ...data, password: e.target.value })}
+                  onChange={(e) =>
+                    setData({ ...data, password: e.target.value })
+                  }
                   type="password"
                   name="password"
                   id="formpassword"
-                  placeholder="Пароль"/>
-					{error && <p>{error}</p>}
+                  placeholder="Пароль"
+                />
+                {error && <p>{error}</p>}
                 <S.BtnEnter id="btnEnter" type="submit">
                   Войти
                 </S.BtnEnter>

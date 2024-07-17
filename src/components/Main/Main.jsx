@@ -2,8 +2,12 @@ import { Column } from "../Column/Column"
 import { statusList } from "../../date"
 import * as S from "./Main.styled"
 import { Container } from "../../GlobalStyle.styled"
+import { useContext } from "react"
+import { DataCardContext } from "../../context/DataCardContext"
 
-export const Main = ({cards})=>{
+export const Main = ()=>{
+	const { cards, setCards } = useContext(DataCardContext);
+
     return(
         <S.Main>
 			<Container>	

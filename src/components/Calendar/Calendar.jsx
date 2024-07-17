@@ -1,11 +1,9 @@
 import { useState } from "react";
 import * as S from "./Calendar.styled";
 import "react-day-picker/dist/style.css";
+import { format } from "date-fns";
 
-export function Calendar() {
-  const [selected, setSelected] = useState();
-  console.log(selected);
-  
+export function Calendar({selected, setSelected}) {
   return (
     <>
       <S.CalPos>
@@ -15,7 +13,7 @@ export function Calendar() {
           selected={selected}
           onSelect={setSelected}
         />
-        <S.P>Выберите срок исполнения:{}</S.P>
+        <S.P>Выберите срок исполнения:{selected && format(selected, 'dd.MM.yyyy')}</S.P>
       </S.CalPos>
     </>
   );

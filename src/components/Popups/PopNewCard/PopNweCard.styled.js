@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Green, Hover01, Orange, Purple } from "../../../GlobalStyle.styled";
+import { Green, Hover01, Orange, Purple, themeColor } from "../../../GlobalStyle.styled";
 
 export const PopNewCard = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ export const NewCardBlock = styled.div`
   border: 0.7px solid #D4DBE5;
   position: relative;
 `
-export const NewCardContent = styled.div`
+export const NewCardContent = styled.form`
  display: block;
  text-align: left;
 
@@ -139,7 +139,7 @@ export const TextArea = styled.textarea`
 }
 `
 
-export const Categorios = styled.div`
+export const Categorios = styled.p`
 p{
   margin-bottom: 14px;
   color: #000;
@@ -154,25 +154,21 @@ export const CatThemeForm = styled.form`
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
+  padding-top: 14px;
 `
-export const CatOrange = styled.input`
+export const CatButton = styled.p`
   display: inline-block;
   width: 120px;
   height: 30px;
   padding: 8px 20px;
+  text-align: center;
   border-radius: 24px;
   margin-right: 7px;
-  opacity: 0.4;
- opacity: 1 !important;
- background-color: #FFE4C2;
+  font-size: 14px;
  cursor: pointer;
- border: none;
-
-    outline: 0;
-    outline-offset: 0;
-&::placeholder{
-    ${Orange}
-}
+ opacity: ${({$isActive})=> $isActive ? 1 : 0.4};
+ 
+  ${({$color}) => themeColor($color)}
 `
 export const CatGreen = styled.input`
  background-color: #B4FDD1;
@@ -225,3 +221,10 @@ export const BtnNewCreate = styled.button`
 
   ${Hover01}
 `
+export const errorMes =styled.p`
+  padding-top: 25px;
+  color: red;
+`
+// export const InputError = css`
+// border: solid 2px red;
+// `

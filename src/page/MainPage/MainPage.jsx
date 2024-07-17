@@ -52,7 +52,7 @@ export const MainPage = () => {
         ) : error ? (
           <p>{error}</p>
         ) : (
-          <Main cards={cards} />
+          <Main/>
         )}
       </Wrapper>
     </ThemeProvider>

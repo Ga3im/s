@@ -72,7 +72,7 @@ export const Register = ()=>{
 						onChange={(e)=> setData({...data, password:e.target.value})} 
 						className="modal__input password-first" 
 						type="password" name="password" id="passwordFirst" placeholder="Пароль"/>
-						{error && <p>{error}</p>}
+						<p>{error}</p>
 						<A.BtnEnter type="submit"> Зарегистрироваться </A.BtnEnter>
 						<A.ModalFormGroup>
 							<p>Уже есть аккаунт?<Link to={routes.login} >Войдите здесь</Link></p>

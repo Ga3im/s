@@ -3,15 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import * as S from "./PopNweCard.styled";
 import { routes } from "../../../router/routes";
 import { addTask } from "../../../api";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useUserContext } from "../../../context/useUserContext";
+import { DataCardContext } from "../../../context/DataCardContext";
 
 export const PopNewCard = () => {
   const { user } = useUserContext();
+	const { setCards } = useContext(DataCardContext);
   const navigate = useNavigate();
-  const [orange, setOrange] = useState(true);
-  const [green, setGreen] = useState(false);
-  const [purple, setPurple] = useState(false);
   const [error, setError] = useState("");
   const [addCard, setAddCard] = useState({
     title: "",
@@ -25,51 +24,64 @@ export const PopNewCard = () => {
   const HandleAddNewCard = async (e) => {
     e.preventDefault();
     if (addCard.title === "") {
+      setTimeout(() => {
+				setError('')
+			}, 1500);
       setError("Не была введена наименование задачи");
       return;
     }
     if (addCard.description === "") {
+      setTimeout(() => {
+				setError('')
+			}, 1500);
       setError("Не была введена описание задачи");
       return;
     }
+    if (addCard.topic === "") {
+      setTimeout(() => {
+				setError('')
+			}, 1500);
+      setError("Выберите категорию");
+      return;
+    }
+    if (addCard.date === "") {
+      setTimeout(() => {
+				setError('')
+			}, 1500);
+      setError("Выберите дату");
+      return;
+    }
     try {
-      await addTask({ addCard, token });
-      setAddCard((addCard.status = "Нужно сделать"));
-      setAddCard((addCard.date = new Date()));
+    
+      const res = await addTask({...addCard, token });
+      setCards(res.tasks)
       navigate(routes.main);
+      console.log(addCard)
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const HandleOrange = (e) => {
-    e.preventDefault();
-    setAddCard((addCard.topic = "Web Design"));
-    setOrange(!orange);
-  };
+  const catButtonHandler = (cat)=>{
+    if(cat === addCard.topic){
+     return setAddCard({...addCard, topic:''})
+    }
+    setAddCard({...addCard, topic:cat})
+  }
 
-  const HandleGreen = (e) => {
-    e.preventDefault();
-    setAddCard((addCard.topic = "Research"));
-    setGreen(!green);
-  };
+  const categories = ['Web Design', 'Research', 'Copywriting'] 
 
-  const HandlePurple = (e) => {
-    e.preventDefault();
-    setAddCard((addCard.topic = "Copywriting"));
-    setPurple(!purple);
-  };
   return (
     <S.PopNewCard>
       <S.NewCardContainer>
         <S.NewCardBlock>
-          <S.NewCardContent>
+          <S.NewCardContent  onSubmit={HandleAddNewCard}>
             <h3>Создание задачи</h3>
             <Link to={routes.main}>
               <S.BtnClose>&#10006;</S.BtnClose>
             </Link>
             <S.NewCardWrap>
-              <S.NewCardForm id="formNewCard">
+              <S.NewCardForm>
                 <S.NewBlock>
                   <S.Label>Название задачи</S.Label>
                   <S.NewInput
@@ -95,29 +107,24 @@ export const PopNewCard = () => {
                   ></S.TextArea>
                 </S.NewBlock>
               </S.NewCardForm>
-              <Calendar />
+              <Calendar selected={addCard.date} setSelected={(date)=> setAddCard({...addCard, date})}/>
             </S.NewCardWrap>
-            <S.Categorios>
-              <p>Категория</p>
+            <div>
+              <S.Categorios>Категория</S.Categorios>
               <S.CatThemeForm>
-                <S.CatOrange 
-                readOnly
-                placeholder=" Web Design"
-                onClick={HandleOrange}>              
-                </S.CatOrange>
-                <S.CatGreen 
-                readOnly
-                placeholder="Research"
-                onClick={HandleGreen}>
-                </S.CatGreen>
-                <S.CatPurple 
-                readOnly
-                placeholder="Copywriting"
-                onClick={HandlePurple}>
-                </S.CatPurple>
+                {categories.map((cat)=>(
+                   <S.CatButton
+                   $color={cat}
+                   $isActive={cat === addCard.topic}
+                   onClick={()=>catButtonHandler(cat)}>
+                    {cat}              
+                   </S.CatButton>
+                ))}
+               
               </S.CatThemeForm>
-            </S.Categorios>
-            <S.BtnNewCreate onClick={HandleAddNewCard}>
+            </div>
+            <S.errorMes>{error}</S.errorMes>
+            <S.BtnNewCreate type="submit">
               Создать задачу
             </S.BtnNewCreate>
           </S.NewCardContent>
