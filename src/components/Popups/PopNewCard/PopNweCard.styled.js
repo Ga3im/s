@@ -26,7 +26,7 @@ export const NewCardContainer = styled.div`
 export const NewCardBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: ${({theme}) => theme.cards};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 48px;
@@ -39,7 +39,7 @@ export const NewCardContent = styled.form`
  text-align: left;
 
  h3{
-    color: #000;
+    color: ${({theme})=>theme.Title};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -75,7 +75,7 @@ export const NewBlock = styled.div`
  flex-direction: column;
 `
 export const Label = styled.label`
- color: #000;
+ color: ${({theme})=>theme.Title};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -140,13 +140,12 @@ export const TextArea = styled.textarea`
 `
 
 export const Categorios = styled.p`
-p{
   margin-bottom: 14px;
-  color: #000;
+  color: ${({theme})=>theme.Title};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-}
+
 `
 
 export const CatThemeForm = styled.form`

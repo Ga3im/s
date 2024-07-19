@@ -52,7 +52,6 @@ export const PopNewCard = () => {
       return;
     }
     try {
-    
       const res = await addTask({...addCard, token });
       setCards(res.tasks)
       navigate(routes.main);

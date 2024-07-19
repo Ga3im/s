@@ -2,7 +2,6 @@ import { format} from "date-fns"
 import * as S from "./Card.styled"
 import { Link } from "react-router-dom"
 
-
 export const Card = ({title, topic, date, id})=>{
 	const creatDate = format(date, 'dd.MM.yyyy')
     return( 
