@@ -30,10 +30,10 @@ export const Loader = () => {
       <Main>
         <Container>
           <MainBlock>
-            <MainContent key={1}>
+            <MainContent>
               {statusList.map((status) => {
                 return (
-                  <MainColumn>
+                  <MainColumn key={status}>
                     <ColumnTitle>
                       <p>{status}</p>
                     </ColumnTitle>

@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom"
 
 export async function getCards(token){
     const responce = await fetch('https://wedev-api.sky.pro/api/kanban', {
@@ -80,17 +79,14 @@ export const addTask = async ({
     const data = await responce.json()
     return data
 }
-export const EditCard = async ()=>{
- const {id} = useParams()
+export const EditCardApi = async ({ status, description, date, token, id})=>{
     const responce = await fetch('https://wedev-api.sky.pro/api/kanban/'+ id,{
         method: 'PUT',
         headers:{
             Authorization:`Bearer ${token}`
         },
         body: JSON.stringify({
-            title:'',
-            topic,
-            statut,
+            status,
             description,
             date,
         })

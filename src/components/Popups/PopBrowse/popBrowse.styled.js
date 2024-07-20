@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Hover01, Hover03, Orange, Subttl, themeColor } from "../../../GlobalStyle.styled";
+import { Hover01, Hover03, Subttl, themeColor } from "../../../GlobalStyle.styled";
 
 
 export const Browse = styled.div`
@@ -62,6 +62,7 @@ export const CatTheme = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 1 !important;
+  background: 
   ${({$color}) => themeColor($color)}
 
   P {
@@ -93,11 +94,13 @@ export const StatusThemes = styled.div`
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  padding: 12px 14px 0px;
+  padding: 0px 14px 0px;
   margin-right: 7px;
   margin-bottom: 7px;
   cursor: pointer;
+  background: ${({$isClick}) => ($isClick  ? 'red' : 'green')}
   p {
+    margin-top:10px;
     color: #94a6be;
     font-weight: 400;
   }
@@ -136,7 +139,7 @@ export const TextArea = styled.textarea`
   line-height: 1;
   letter-spacing: -0.14px;
   margin-top: 14px;
-  height: 200px;
+  height: 230px;
 
   .form-browse__area::-moz-placeholder {
     font-weight: 400;
@@ -204,3 +207,23 @@ export const BtnClose = styled.button`
   }
   ${Hover01}
 `;
+
+export const ButtonEdit = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+`
+export const BtnSave = styled.button`
+ border-radius: 4px;
+  border: 0.7px solid var(--palette-navy-60, #565eef);
+  outline: none;
+  background: #565eef;
+  color: #ffffff;
+  padding: 7px 13px 7px 10px;
+  p {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  ${Hover01}
+`
