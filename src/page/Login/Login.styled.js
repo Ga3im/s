@@ -3,10 +3,9 @@ import { Hover01 } from "../../GlobalStyle.styled";
 
 export const ContainerSigin = styled.div`
   display: block;
-
   min-height: 100vh;
   margin: 0 auto;
-`
+`;
 
 export const Modal = styled.div`
   width: 100%;
@@ -17,19 +16,19 @@ export const Modal = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const ModalBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: ${({ theme }) => theme.cards};
   max-width: 368px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #D4DBE5;
+  border: 0.7px solid #d4dbe5;
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
-`
+`;
 
 export const ModalTtl = styled.div`
   text-align: center;
@@ -38,7 +37,10 @@ export const ModalTtl = styled.div`
   line-height: 30px;
   letter-spacing: -0.6px;
   margin-bottom: 20px;
-`
+  h2 {
+    color: ${({ theme }) => theme.Title};
+  }
+`;
 
 export const ModalFormLogin = styled.form`
   width: 100%;
@@ -47,7 +49,7 @@ export const ModalFormLogin = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const ModalInput = styled.input`
   width: 100%;
@@ -56,29 +58,32 @@ export const ModalInput = styled.input`
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   outline: none;
   padding: 10px 8px;
+  background: ${({ theme }) => theme.cards};
+  color:${({ theme }) => theme.Title};
 
   &::-moz-placeholder {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: -0.28px;
-  color: #94A6BE;}
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.28px;
+    color: #94a6be;
+  }
 
   &::placeholder {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: -0.28px;
-  color: #94A6BE;
-}
-`
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.28px;
+    color: #94a6be;
+  }
+`;
 
 export const BtnEnter = styled.button`
   width: 100%;
   height: 30px;
-  background-color: #565EEF;
+  background-color: #565eef;
   border-radius: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -91,35 +96,39 @@ export const BtnEnter = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #FFFFFF;
+  color: #ffffff;
   a {
-  width: 100%;
-  height: 100%;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   ${Hover01}
-`
+`;
 
 export const ModalFormGroup = styled.div`
- text-align: center;
-p{
-  color: rgba(148, 166, 190, 0.4);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.14px;
-}
- a {
-  color: rgba(148, 166, 190, 0.4);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.14px;
-  text-decoration: underline;
+  text-align: center;
+  p {
+    color: rgba(148, 166, 190, 0.4);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.14px;
+  }
+  a {
+    color: rgba(148, 166, 190, 0.4);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.14px;
+    text-decoration: underline;
+  }
+`;
 
-}
+export const errorMessage = styled.p`
+  padding-top: 25px;
+  color: red;
 `

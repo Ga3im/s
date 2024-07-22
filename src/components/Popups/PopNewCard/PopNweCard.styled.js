@@ -69,7 +69,7 @@ export const NewCardWrap = styled.div`
   justify-content: space-between;
 `;
 
-export const NewCardForm = styled.form`
+export const NewCardForm = styled.div`
   max-width: 370px;
   width: 100%;
   display: block;
@@ -153,7 +153,7 @@ export const Categorios = styled.p`
   line-height: 24px;
 `;
 
-export const CatThemeForm = styled.form`
+export const CatThemeForm = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;

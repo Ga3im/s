@@ -1,6 +1,11 @@
 import styled from "styled-components";
-import { Hover01, Hover03, Subttl, themeColor } from "../../../GlobalStyle.styled";
-
+import {
+  Hover01,
+  Hover03,
+  paragraph,
+  Subttl,
+  themeColor,
+} from "../../../GlobalStyle.styled";
 
 export const Browse = styled.div`
   width: 100%;
@@ -22,7 +27,7 @@ export const BrowseContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 10%);
 `;
 
 export const BrowseBlock = styled.div`
@@ -62,26 +67,14 @@ export const CatTheme = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 1 !important;
-  background: 
-  ${({$color}) => themeColor($color)}
-
-  P {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 14px;
-    white-space: nowrap;
-  }
+ ${({ $color }) => themeColor($color)};
+  ${paragraph}
 `;
 
 export const Status = styled.div`
   margin-bottom: 11px;
-  p {
-    color: ${({ theme }) => theme.Title};
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1;
-    margin-bottom: 14px;
-  }
+  color: ${({ theme }) => theme.Title};
+  ${paragraph}
 `;
 
 export const StatusThemes = styled.div`
@@ -89,21 +82,20 @@ export const StatusThemes = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-top: 14px;
 `;
 
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  padding: 0px 14px 0px;
+  padding: 14px 14px 12px;
   margin-right: 7px;
-  margin-bottom: 7px;
   cursor: pointer;
-  background: ${({$isClick}) => ($isClick  ? 'red' : 'green')}
-  p {
-    margin-top:10px;
-    color: #94a6be;
-    font-weight: 400;
-  }
+  margin-bottom: 7px;
+  color: #94a6be;
+  font-weight: 500;
+  background: ${({ $isClick }) => ($isClick ? "#94A6BE" : "")};
+  color: ${({ $isClick }) => ($isClick ? "#FFFFFF" : "")};
 `;
 
 export const BrowseWrap = styled.div`
@@ -140,6 +132,7 @@ export const TextArea = styled.textarea`
   letter-spacing: -0.14px;
   margin-top: 14px;
   height: 230px;
+  background: ${({ theme }) => theme.cards};
 
   .form-browse__area::-moz-placeholder {
     font-weight: 400;
@@ -213,9 +206,9 @@ export const ButtonEdit = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-`
+`;
 export const BtnSave = styled.button`
- border-radius: 4px;
+  border-radius: 4px;
   border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
   background: #565eef;
@@ -226,4 +219,4 @@ export const BtnSave = styled.button`
     font-size: 14px;
   }
   ${Hover01}
-`
+`;

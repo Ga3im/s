@@ -10,18 +10,17 @@ import { useUserContext } from "../../context/useUserContext";
 import { Loader } from "../Loader/LoaderPage";
 import { DataCardContext } from "../../context/DataCardContext";
 
-export const MainPage = () => {
+export const MainPage = ({changeTheme, setChangeTheme}) => {
   const { cards, setCards } = useContext(DataCardContext);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
-  const [changeTheme, setChangeTheme] = useState("light");
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUserContext();
 
   const closeUserInfo = () => {
-    if (isOpen) {
-      setIsOpen(!isOpen);
-    }
+    // if (isOpen) {
+    //   setIsOpen(!isOpen);
+    // }
   };
   useEffect(() => {
     getCards(user.token)
@@ -37,7 +36,7 @@ export const MainPage = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={changeTheme === "light" ? light : dark}>
+    <>
       <GlobalStyle />
       <Wrapper onClick={closeUserInfo}>
         <Outlet />
@@ -47,14 +46,8 @@ export const MainPage = () => {
           setChangeTheme={setChangeTheme}
           changeTheme={changeTheme}
         />
-        {isLoading ? (
-          <Loader />
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
-          <Main/>
-        )}
+        {isLoading ? <Loader /> : error ? <p>{error}</p> : <Main />}
       </Wrapper>
-    </ThemeProvider>
+    </>
   );
 };

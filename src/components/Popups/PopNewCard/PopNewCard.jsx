@@ -9,7 +9,7 @@ import { DataCardContext } from "../../../context/DataCardContext";
 
 export const PopNewCard = () => {
   const { user } = useUserContext();
-  const { setCards } = useContext(DataCardContext);
+	const { setCards } = useContext(DataCardContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [addCard, setAddCard] = useState({
@@ -25,55 +25,56 @@ export const PopNewCard = () => {
     e.preventDefault();
     if (addCard.title === "") {
       setTimeout(() => {
-        setError("");
-      }, 1500);
+				setError('')
+			}, 1500);
       setError("Не была введена наименование задачи");
       return;
     }
     if (addCard.description === "") {
       setTimeout(() => {
-        setError("");
-      }, 1500);
+				setError('')
+			}, 1500);
       setError("Не была введена описание задачи");
       return;
     }
     if (addCard.topic === "") {
       setTimeout(() => {
-        setError("");
-      }, 1500);
+				setError('')
+			}, 1500);
       setError("Выберите категорию");
       return;
     }
     if (addCard.date === "") {
       setTimeout(() => {
-        setError("");
-      }, 1500);
+				setError('')
+			}, 1500);
       setError("Выберите дату");
       return;
     }
     try {
-      const res = await addTask({ ...addCard, token });
-      setCards(res.tasks);
+      const res = await addTask({...addCard, token });
+      setCards(res.tasks)
       navigate(routes.main);
+      console.log(addCard)
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const catButtonHandler = (cat) => {
-    if (cat === addCard.topic) {
-      return setAddCard({ ...addCard, topic: "" });
+  const catButtonHandler = (cat)=>{
+    if(cat === addCard.topic){
+     return setAddCard({...addCard, topic:''})
     }
-    setAddCard({ ...addCard, topic: cat });
-  };
+    setAddCard({...addCard, topic:cat})
+  }
 
-  const categories = ["Web Design", "Research", "Copywriting"];
+  const categories = ['Web Design', 'Research', 'Copywriting'] 
 
   return (
     <S.PopNewCard>
       <S.NewCardContainer>
         <S.NewCardBlock>
-          <S.NewCardContent onSubmit={HandleAddNewCard}>
+          <S.NewCardContent  onSubmit={HandleAddNewCard}>
             <h3>Создание задачи</h3>
             <Link to={routes.main}>
               <S.BtnClose>&#10006;</S.BtnClose>
@@ -105,26 +106,27 @@ export const PopNewCard = () => {
                   ></S.TextArea>
                 </S.NewBlock>
               </S.NewCardForm>
-              <Calendar
-                selected={addCard.date}
-                setSelected={(date) => setAddCard({ ...addCard, date })}
-              />
+              <Calendar selected={addCard.date} setSelected={(date)=> setAddCard({...addCard, date})}/>
             </S.NewCardWrap>
             <div>
               <S.Categorios>Категория</S.Categorios>
               <S.CatThemeForm>
-                {categories.map((cat) => (
-                  <S.CatButton
-                    $color={cat}
-                    $isActive={cat === addCard.topic}
-                    onClick={() => catButtonHandler(cat)}>
-                    {cat}
-                  </S.CatButton>
+                {categories.map((cat)=>(
+                   <S.CatButton
+                   key={cat}
+                   $color={cat}
+                   $isActive={cat === addCard.topic}
+                   onClick={()=>catButtonHandler(cat)}>
+                    {cat}              
+                   </S.CatButton>
                 ))}
+               
               </S.CatThemeForm>
             </div>
             <S.errorMes>{error}</S.errorMes>
-            <S.BtnNewCreate type="submit">Создать задачу</S.BtnNewCreate>
+            <S.BtnNewCreate type="submit">
+              Создать задачу
+            </S.BtnNewCreate>
           </S.NewCardContent>
         </S.NewCardBlock>
       </S.NewCardContainer>

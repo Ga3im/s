@@ -79,7 +79,7 @@ export const addTask = async ({
     const data = await responce.json()
     return data
 }
-export const EditCardApi = async ({ status, description, date, token, id})=>{
+export const EditCardApi = async ({topic, title, status, description, date, token, id})=>{
     const responce = await fetch('https://wedev-api.sky.pro/api/kanban/'+ id,{
         method: 'PUT',
         headers:{
@@ -87,6 +87,8 @@ export const EditCardApi = async ({ status, description, date, token, id})=>{
         },
         body: JSON.stringify({
             status,
+            topic,
+            title,
             description,
             date,
         })

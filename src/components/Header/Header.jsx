@@ -3,14 +3,20 @@ import { Container } from "../../GlobalStyle.styled";
 import { Link } from "react-router-dom";
 import { routes } from "../../router/routes.js";
 import { useUserContext } from "../../context/useUserContext.js";
+import { useState } from "react";
 
 export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
   const { user } = useUserContext();
+  const[checked, setChecked] = useState(false)
   const toggleOpenUser = () => {
     setIsOpen(!isOpen);
   };
 
-  const onChangeTheme = () => {
+
+  const onChangeTheme = (e) => {
+    e.preventDefault()
+    setChecked(!checked)
+    localStorage.setItem('theme', checked)
     setChangeTheme(changeTheme === "light" ? "dark" : "light");
   };
 
@@ -42,10 +48,9 @@ export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
                 <S.UserTheme>
                   <p>Темная тема</p>
                   <input
-                    defaultChecked={changeTheme === "dark"}
+                    defaultChecked={checked}
                     onClick={onChangeTheme}
                     type="checkbox"
-                    className="checkbox"
                     name="checkbox"
                   />
                 </S.UserTheme>

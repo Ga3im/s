@@ -8,19 +8,20 @@ import { DataCardContext } from "../../../context/DataCardContext";
 import { useContext, useEffect, useState } from "react";
 import { useUserContext } from "../../../context/useUserContext";
 
-export const PopBrowse = () => {
+export const PopBrowse = ({ title, topic, description, cards}) => {
   const { user } = useUserContext();
   const [error, setError] = useState();
-  const { cards, setCards } = useContext(DataCardContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false);
+  const [readOnly, setReadOnly] = useState(true)
   const [editCard, setEditCard] = useState({
+    title: title,
+    topic: topic,
     status: "",
     description: "",
     date: "",
   });
-  console.log(editCard.topic);
   useEffect(() => {
     getCards(user.token)
       .then((res) => {
@@ -46,19 +47,22 @@ export const PopBrowse = () => {
   const EditCard = async (e) => {
     e.preventDefault();
     const res = await EditCardApi({ ...editCard, token, id });
-    console.log(res);
+    setCards(res.tasks);
+    navigate(routes.main);
   };
   const EditHandle = () => {
     setIsEdit(!isEdit);
+    setReadOnly(!readOnly)
   };
   const CancelHandle = () => {
     setIsEdit(!isEdit);
+    setReadOnly(!readOnly)
+
   };
 
   const selectStatusHandle = (s) => {
     setEditCard({ ...editCard, status: s });
   };
-
   return (
     <>
       <S.Browse>
@@ -66,11 +70,10 @@ export const PopBrowse = () => {
           <S.BrowseBlock>
             <S.Content>
               <S.TopBlock>
-                <S.H3>Название задачи</S.H3>
-                <S.CatTheme>
-                  {cards.map((card) => (
-                    <p key={card._id}>{id === card._id ? card.topic : ""}</p>
-                  ))}
+                <S.H3>{cards[0].title}</S.H3>
+                <S.CatTheme
+                $color={cards[0].topic}>
+                  <p>{cards[0].topic}</p>
                 </S.CatTheme>
               </S.TopBlock>
               <S.Status>
@@ -78,9 +81,7 @@ export const PopBrowse = () => {
                 <S.StatusThemes>
                   {!isEdit && (
                     <S.StatusTheme>
-                      {cards.map((c) => (
-                        <p key={c._id}>{id === c._id ? c.status : ""}</p>
-                      ))}
+                        <p>{cards[0].status}</p>
                     </S.StatusTheme>
                   )}
                   {isEdit &&
@@ -100,15 +101,18 @@ export const PopBrowse = () => {
                   <S.FormBlock>
                     <S.Label>Описание задачи</S.Label>
                     <S.TextArea
+                       readOnly={readOnly}
                       onChange={(e) =>
                         setEditCard({
                           ...editCard,
                           description: e.target.value,
                         })
                       }
+                      value={cards[0].description}
                       name="text"
                       placeholder="Введите описание задачи..."
-                    />
+                   />
+                     
                   </S.FormBlock>
                 </S.BrowseFrom>
                 <Calendar

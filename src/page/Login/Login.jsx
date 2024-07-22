@@ -71,7 +71,8 @@ export const Login = () => {
                   id="formpassword"
                   placeholder="Пароль"
                 />
-                {error && <p>{error}</p>}
+                {error && 
+                <S.errorMessage>{error}</S.errorMessage>}
                 <S.BtnEnter id="btnEnter" type="submit">
                   Войти
                 </S.BtnEnter>

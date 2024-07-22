@@ -99,7 +99,7 @@ export const CalenarStyle = css`
 `
 
 export const Subttl = css`
-  color: #000;
+  color: ${({ theme }) => theme.Title};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -129,4 +129,11 @@ export const Loader4 = styled.div`
 width:58px;
 height: 13px;
 background: linear-gradient(45deg, #c1cddc 0%, #e9eef7 100%)
+`
+
+export const paragraph = css`
+  font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
+    white-space: nowrap;
 `
