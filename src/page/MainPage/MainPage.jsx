@@ -18,9 +18,9 @@ export const MainPage = ({changeTheme, setChangeTheme}) => {
   const { user } = useUserContext();
 
   const closeUserInfo = () => {
-    // if (isOpen) {
-    //   setIsOpen(!isOpen);
-    // }
+    if (isOpen) {
+      setIsOpen(!isOpen);
+    }
   };
   useEffect(() => {
     getCards(user.token)
