@@ -36,6 +36,9 @@ export const Login = () => {
       login(res.user);
       navigate(routes.main);
     } catch (error) {
+      setTimeout(() => {
+        setError("");
+      }, 1500);
       setError(error.message);
     }
   };
@@ -61,6 +64,7 @@ export const Login = () => {
                   name="login"
                   id="formlogin"
                   placeholder="Эл. почта"
+                  $isError={error === "Логин не был введен"}
                 />
                 <S.ModalInput
                   onChange={(e) =>
@@ -70,9 +74,9 @@ export const Login = () => {
                   name="password"
                   id="formpassword"
                   placeholder="Пароль"
-                />
-                {error && 
-                <S.errorMessage>{error}</S.errorMessage>}
+                  $isError={error === "Пароль не был введен"}
+                />  
+                <S.errorMessage>{error}</S.errorMessage>
                 <S.BtnEnter id="btnEnter" type="submit">
                   Войти
                 </S.BtnEnter>

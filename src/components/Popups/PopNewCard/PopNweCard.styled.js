@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {
   Green,
   Hover01,
-  Orange,
   Purple,
   themeColor,
 } from "../../../GlobalStyle.styled";

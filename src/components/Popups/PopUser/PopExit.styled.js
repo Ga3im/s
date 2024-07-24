@@ -67,7 +67,6 @@ export const ButtonExitNo = styled.button`
   color: #565EEF;
   line-height: 1;
   font-weight: 500;
-  margin-right: 20px;
   border-color: #565EEF;
    width: 153px;
    height: 30px;

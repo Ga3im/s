@@ -116,7 +116,7 @@ export const PopBrowse = ({ title, topic, description, cards}) => {
                   </S.FormBlock>
                 </S.BrowseFrom>
                 <Calendar
-                  selected={editCard.date}
+                  selected={cards[0].date}
                   setSelected={(date) => setEditCard({ ...editCard, date })}
                 />
               </S.BrowseWrap>

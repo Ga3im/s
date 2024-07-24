@@ -55,11 +55,11 @@ export const ModalInput = styled.input`
   width: 100%;
   min-width: 100%;
   border-radius: 8px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
   outline: none;
   padding: 10px 8px;
   background: ${({ theme }) => theme.cards};
   color:${({ theme }) => theme.Title};
+  border: ${({$isError})=> $isError ? '1px solid red' : '0.7px solid rgba(148, 166, 190, 0.4)'};
 
   &::-moz-placeholder {
     font-family: "Roboto", sans-serif;
@@ -85,7 +85,6 @@ export const BtnEnter = styled.button`
   height: 30px;
   background-color: #565eef;
   border-radius: 4px;
-  margin-top: 20px;
   margin-bottom: 20px;
   border: none;
   outline: none;
@@ -129,6 +128,6 @@ export const ModalFormGroup = styled.div`
 `;
 
 export const errorMessage = styled.p`
-  padding-top: 25px;
+  padding-top: 15px;
   color: red;
 `

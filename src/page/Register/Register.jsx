@@ -65,12 +65,15 @@ export const Register = () => {
                   type="text"
                   name="first-name"
                   placeholder="Имя"
+                  $isError={error === "Имя не была введена"}
                 />
                 <A.ModalInput
                   onChange={(e) => setData({ ...data, login: e.target.value })}
                   type="text"
                   name="login"
                   placeholder="Эл. почта"
+                  $isError={error === "Почта не была введена"}
+
                 />
                 <A.ModalInput
                   onChange={(e) =>
@@ -79,6 +82,7 @@ export const Register = () => {
                   type="password"
                   name="password"
                   placeholder="Пароль"
+                  $isError={error === "Пароль не был введен"}
                 />
                 <A.errorMessage>{error}</A.errorMessage>
                 <A.BtnEnter type="submit"> Зарегистрироваться </A.BtnEnter>
