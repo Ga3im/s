@@ -8,7 +8,8 @@ import { DataCardContext } from "../../../context/DataCardContext";
 import { useContext, useEffect, useState } from "react";
 import { useUserContext } from "../../../context/useUserContext";
 
-export const PopBrowse = ({ title, topic, description, cards}) => {
+export const PopBrowse = ({ title, topic, cards}) => {
+  const {setCards} = useContext(DataCardContext)
   const { user } = useUserContext();
   const [error, setError] = useState();
   const { id } = useParams();

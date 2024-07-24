@@ -6,7 +6,7 @@ import { useContext } from "react"
 import { DataCardContext } from "../../context/DataCardContext"
 
 export const Main = ()=>{
-	const { cards, setCards } = useContext(DataCardContext);
+	const { cards } = useContext(DataCardContext);
 
     return(
         <S.Main>
