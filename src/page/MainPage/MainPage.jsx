@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { GlobalStyle, Wrapper } from "../../GlobalStyle.styled";
+import { ErMes, GlobalStyle, Wrapper } from "../../GlobalStyle.styled";
 import { Header } from "../../components/Header/Header";
 import { Main } from "../../components/Main/Main";
 import { Outlet } from "react-router-dom";
@@ -46,7 +46,9 @@ export const MainPage = ({changeTheme, setChangeTheme}) => {
           setChangeTheme={setChangeTheme}
           changeTheme={changeTheme}
         />
-        {isLoading ? <Loader /> : error ? <p>{error}</p> : <Main />}
+        {isLoading ? <Loader /> : error ? 
+        <ErMes>{error}</ErMes>
+         : <Main />}
       </Wrapper>
     </>
   );

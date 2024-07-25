@@ -60,17 +60,15 @@ export const CardBtn = styled.div`
   height: 24px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 2px;
-
-  div {
-  width: 4px;
+`
+export const BtnThree = styled.div`
+ width: 4px;
   height: 4px;
   border-radius: 50%;
   background-color: #94A6BE;
-}
 `
-
 export const CardContent = styled.div`
   height: 64px;
   display: flex;

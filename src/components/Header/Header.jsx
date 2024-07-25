@@ -42,7 +42,7 @@ export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
               {user.name}
             </S.HeaderUserName>
             {isOpen && (
-              <S.HeaderPopUser>
+              <S.HeaderPopUser onClick={(e) => e.stopPropagation()}>
                 <S.UserName>{user.name}</S.UserName>
                 <S.UserMail>{user.login}</S.UserMail>
                 <S.UserTheme>

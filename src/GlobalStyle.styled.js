@@ -35,6 +35,10 @@ body {
   color: #000000;
 }
 `
+export const ErMes = styled.p`
+    text-align: center;
+    padding-top: 40px;
+`
 
 export const Wrapper = styled.div`
   max-width: 100%;

@@ -27,7 +27,7 @@ export const BrowseContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 10%);
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 export const BrowseBlock = styled.div`
@@ -94,8 +94,8 @@ export const StatusTheme = styled.div`
   margin-bottom: 7px;
   color: #94a6be;
   font-weight: 500;
-  background: ${({ $isClick }) => ($isClick ? "#94A6BE" : "")};
-  color: ${({ $isClick }) => ($isClick ? "#FFFFFF" : "")};
+  background: ${({ $isClick, $isSelected }) => ($isClick || $isSelected? "#94A6BE" : "")};
+  color: ${({ $isClick, $isSelected }) => ($isClick || $isSelected ? "#FFFFFF" : "")};
 `;
 
 export const BrowseWrap = styled.div`

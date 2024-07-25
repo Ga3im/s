@@ -15,7 +15,7 @@ export const StyledDayPicker = styled(DayPicker)`
   .rdp-tbody {
     font-size: 10px;
   }
-
+  
   .rdp-day_selected,
   .rdp-day_selected:focus-visible,
   .rdp-day_selected:hover {

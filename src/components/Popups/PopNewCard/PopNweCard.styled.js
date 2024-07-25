@@ -227,7 +227,4 @@ export const BtnNewCreate = styled.button`
 export const errorMes = styled.p`
   padding-top: 25px;
   color: red;
-`;
-// export const InputError = css`
-// border: solid 2px red;
-// `
+`

@@ -7,7 +7,6 @@ import { DataCardContext } from "../../context/DataCardContext"
 
 export const Main = ()=>{
 	const { cards } = useContext(DataCardContext);
-
     return(
         <S.Main>
 			<Container>	

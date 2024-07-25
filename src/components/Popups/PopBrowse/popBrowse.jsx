@@ -8,20 +8,20 @@ import { DataCardContext } from "../../../context/DataCardContext";
 import { useContext, useEffect, useState } from "react";
 import { useUserContext } from "../../../context/useUserContext";
 
-export const PopBrowse = ({ title, topic, cards}) => {
+export const PopBrowse = ({ cards}) => {
   const {setCards} = useContext(DataCardContext)
   const { user } = useUserContext();
   const [error, setError] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false);
-  const [readOnly, setReadOnly] = useState(true)
+  const [textEdit, setTextEdit] = useState(true)
   const [editCard, setEditCard] = useState({
-    title: title,
-    topic: topic,
-    status: "",
-    description: "",
-    date: "",
+    title: cards[0].title,
+    topic: cards[0].topic,
+    status: cards[0].status,
+    description: cards[0].description,
+    date: cards[0].date,
   });
   useEffect(() => {
     getCards(user.token)
@@ -41,24 +41,30 @@ export const PopBrowse = ({ title, topic, cards}) => {
       setCards(res.tasks);
       navigate(routes.main);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
   const EditCard = async (e) => {
     e.preventDefault();
-    const res = await EditCardApi({ ...editCard, token, id });
+    try {
+      const res = await EditCardApi({ ...editCard, token, id });
     setCards(res.tasks);
     navigate(routes.main);
+    } catch (error) {
+      console.log(error)    }
+    
   };
-  const EditHandle = () => {
+  const EditHandle = (e) => {
+    e.preventDefault();
     setIsEdit(!isEdit);
-    setReadOnly(!readOnly)
-  };
-  const CancelHandle = () => {
-    setIsEdit(!isEdit);
-    setReadOnly(!readOnly)
+    setTextEdit(!textEdit)
 
+  };
+  const CancelHandle = (e) => {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+    setTextEdit(!textEdit)
   };
 
   const selectStatusHandle = (s) => {
@@ -81,7 +87,8 @@ export const PopBrowse = ({ title, topic, cards}) => {
                 <p>Статус</p>
                 <S.StatusThemes>
                   {!isEdit && (
-                    <S.StatusTheme>
+                    <S.StatusTheme
+                    $isSelected={cards[0].status}>
                         <p>{cards[0].status}</p>
                     </S.StatusTheme>
                   )}
@@ -102,14 +109,14 @@ export const PopBrowse = ({ title, topic, cards}) => {
                   <S.FormBlock>
                     <S.Label>Описание задачи</S.Label>
                     <S.TextArea
-                       readOnly={readOnly}
+                       readOnly={textEdit}
                       onChange={(e) =>
                         setEditCard({
                           ...editCard,
                           description: e.target.value,
                         })
                       }
-                      value={cards[0].description}
+                      value={editCard.description }
                       name="text"
                       placeholder="Введите описание задачи..."
                    />
@@ -117,7 +124,7 @@ export const PopBrowse = ({ title, topic, cards}) => {
                   </S.FormBlock>
                 </S.BrowseFrom>
                 <Calendar
-                  selected={cards[0].date}
+                  selected={editCard.date}
                   setSelected={(date) => setEditCard({ ...editCard, date })}
                 />
               </S.BrowseWrap>

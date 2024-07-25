@@ -15,7 +15,7 @@ export const PopExit = ()=>{
 						</S.ExitTtl>
 						<S.FormExit>
 							<S.PopExitGroup>
-							<S.ButtonExitYes onClick={logout} id="exitYes">Да, выйти </S.ButtonExitYes>
+							<S.ButtonExitYes onClick={logout}>Да, выйти </S.ButtonExitYes>
 							<Link to={routes.main}><S.ButtonExitNo id="exitNo">Нет, остаться</S.ButtonExitNo></Link> 
 							</S.PopExitGroup>
 						</S.FormExit>
