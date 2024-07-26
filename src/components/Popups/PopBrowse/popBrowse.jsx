@@ -23,15 +23,6 @@ export const PopBrowse = ({ cards}) => {
     description: cards[0].description,
     date: cards[0].date,
   });
-  useEffect(() => {
-    getCards(user.token)
-      .then((res) => {
-        setCards(res.tasks);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  }, []);
 
   let token = user.token;
   const Delete = async (e) => {

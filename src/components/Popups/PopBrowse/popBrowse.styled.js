@@ -133,6 +133,7 @@ export const TextArea = styled.textarea`
   margin-top: 14px;
   height: 230px;
   background: ${({ theme }) => theme.cards};
+  resize: none;
 
   .form-browse__area::-moz-placeholder {
     font-weight: 400;

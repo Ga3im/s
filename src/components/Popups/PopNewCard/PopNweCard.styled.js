@@ -120,13 +120,14 @@ export const TextArea = styled.textarea`
   height: 200px;
   width: 100%;
   outline: none;
-  padding: 14px;
+  padding: 20px 14px 20px 14px;
   background: transparent;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
+  resize: none;
 
   &::placeholder {
     font-weight: 400;
@@ -145,9 +146,8 @@ export const TextArea = styled.textarea`
 `;
 
 export const Categorios = styled.p`
-  margin-bottom: 14px;
   color: ${({ theme }) => theme.Title};
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 24px;
 `;
@@ -158,6 +158,7 @@ export const CatThemeForm = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   padding-top: 14px;
+  font-weight: bold;
 `;
 export const CatButton = styled.p`
   display: inline-block;
@@ -227,4 +228,4 @@ export const BtnNewCreate = styled.button`
 export const errorMes = styled.p`
   padding-top: 25px;
   color: red;
-`
+`;
