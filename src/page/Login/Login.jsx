@@ -75,7 +75,7 @@ export const Login = () => {
                   id="formpassword"
                   placeholder="Пароль"
                   $isError={error === "Пароль не был введен"}
-                />  
+                />
                 <S.errorMessage>{error}</S.errorMessage>
                 <S.BtnEnter id="btnEnter" type="submit">
                   Войти

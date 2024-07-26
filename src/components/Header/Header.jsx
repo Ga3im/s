@@ -7,16 +7,15 @@ import { useState } from "react";
 
 export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
   const { user } = useUserContext();
-  const[checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
   const toggleOpenUser = () => {
     setIsOpen(!isOpen);
   };
 
-
   const onChangeTheme = (e) => {
-    e.preventDefault()
-    setChecked(!checked)
-    localStorage.setItem('theme', checked)
+    e.preventDefault();
+    setChecked(!checked);
+    localStorage.setItem("theme", checked);
     setChangeTheme(changeTheme === "light" ? "dark" : "light");
   };
 
@@ -29,9 +28,6 @@ export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
               <img src="/logo.png" alt="logo" />
             </a>
           </S.HeaderLogo>
-          {/* <S.HeaderLogo >
-						<a href="" target="_self"><img src="/logo_dark.png" alt="logo"/></a>
-					</S.HeaderLogo> */}
           <S.Nav>
             <Link to={routes.addcard}>
               <S.ButtonNewTask id="btnMainNew">

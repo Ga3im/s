@@ -4,12 +4,11 @@ import { DataCardContext } from "../../context/DataCardContext";
 import { useParams } from "react-router-dom";
 
 export const CardPage = () => {
-  const { cards, setCards } = useContext(DataCardContext);
-  const {id } = useParams()
+  const { cards } = useContext(DataCardContext);
+  const { id } = useParams();
   return (
     <>
-      <PopBrowse 
-      cards={cards.filter((card)=>(card._id === id))}/>    
+      <PopBrowse cards={cards.filter((card) => card._id === id)} />
     </>
-  )
+  );
 };

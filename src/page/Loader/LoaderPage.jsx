@@ -38,22 +38,22 @@ export const Loader = () => {
                       <p>{status}</p>
                     </ColumnTitle>
                     {statusList.map((id) => (
-                       <Cards key={id}>
-                       <CardItem>
-                         <Card>
-                           <CardGroup>
-                             <Loader1></Loader1>
-                             <Loader2></Loader2>
-                           </CardGroup>
-                           <CardContent>
-                             <Loader3></Loader3>
-                             <CardDate>
-                               <Loader4></Loader4>
-                             </CardDate>
-                           </CardContent>
-                         </Card>
-                       </CardItem>
-                     </Cards>
+                      <Cards key={id}>
+                        <CardItem>
+                          <Card>
+                            <CardGroup>
+                              <Loader1></Loader1>
+                              <Loader2></Loader2>
+                            </CardGroup>
+                            <CardContent>
+                              <Loader3></Loader3>
+                              <CardDate>
+                                <Loader4></Loader4>
+                              </CardDate>
+                            </CardContent>
+                          </Card>
+                        </CardItem>
+                      </Cards>
                     ))}
                   </MainColumn>
                 );

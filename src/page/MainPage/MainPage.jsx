@@ -3,15 +3,13 @@ import { ErMes, GlobalStyle, Wrapper } from "../../GlobalStyle.styled";
 import { Header } from "../../components/Header/Header";
 import { Main } from "../../components/Main/Main";
 import { Outlet } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import { light, dark } from "../../theme";
 import { getCards } from "../../api";
 import { useUserContext } from "../../context/useUserContext";
 import { Loader } from "../Loader/LoaderPage";
 import { DataCardContext } from "../../context/DataCardContext";
 
-export const MainPage = ({changeTheme, setChangeTheme}) => {
-  const { cards, setCards } = useContext(DataCardContext);
+export const MainPage = ({ changeTheme, setChangeTheme }) => {
+  const { setCards } = useContext(DataCardContext);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const [isOpen, setIsOpen] = useState(false);
@@ -46,9 +44,7 @@ export const MainPage = ({changeTheme, setChangeTheme}) => {
           setChangeTheme={setChangeTheme}
           changeTheme={changeTheme}
         />
-        {isLoading ? <Loader /> : error ? 
-        <ErMes>{error}</ErMes>
-         : <Main />}
+        {isLoading ? <Loader /> : error ? <ErMes>{error}</ErMes> : <Main />}
       </Wrapper>
     </>
   );

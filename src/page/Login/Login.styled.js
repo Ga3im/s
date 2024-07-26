@@ -58,8 +58,9 @@ export const ModalInput = styled.input`
   outline: none;
   padding: 10px 8px;
   background: ${({ theme }) => theme.cards};
-  color:${({ theme }) => theme.Title};
-  border: ${({$isError})=> $isError ? '1px solid red' : '0.7px solid rgba(148, 166, 190, 0.4)'};
+  color: ${({ theme }) => theme.Title};
+  border: ${({ $isError }) =>
+    $isError ? "1px solid red" : "0.7px solid rgba(148, 166, 190, 0.4)"};
 
   &::-moz-placeholder {
     font-family: "Roboto", sans-serif;
@@ -130,4 +131,4 @@ export const ModalFormGroup = styled.div`
 export const errorMessage = styled.p`
   padding-top: 15px;
   color: red;
-`
+`;

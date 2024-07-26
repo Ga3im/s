@@ -18,13 +18,13 @@ export const Register = () => {
 
   const handleReg = async (e) => {
     e.preventDefault();
-	if (data.name === "") {
-		setTimeout(() => {
-		  setError("");
-		}, 1500);
-		setError("Имя не была введена");
-		return;
-	  }
+    if (data.name === "") {
+      setTimeout(() => {
+        setError("");
+      }, 1500);
+      setError("Имя не была введена");
+      return;
+    }
     if (data.login === "") {
       setTimeout(() => {
         setError("");
@@ -39,7 +39,7 @@ export const Register = () => {
       setError("Пароль не был введен");
       return;
     }
-   
+
     try {
       const res = await register(data);
       login(res.name);
@@ -73,7 +73,6 @@ export const Register = () => {
                   name="login"
                   placeholder="Эл. почта"
                   $isError={error === "Почта не была введена"}
-
                 />
                 <A.ModalInput
                   onChange={(e) =>

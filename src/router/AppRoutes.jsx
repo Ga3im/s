@@ -23,7 +23,15 @@ export const AppRoutes = () => {
           <BrowserRouter>
             <Routes>
               <Route element={<ProtectedRoute />}>
-                <Route path={routes.main} element={<MainPage changeTheme={changeTheme} setChangeTheme={setChangeTheme} />}>
+                <Route
+                  path={routes.main}
+                  element={
+                    <MainPage
+                      changeTheme={changeTheme}
+                      setChangeTheme={setChangeTheme}
+                    />
+                  }
+                >
                   <Route path={routes.addcard} element={<AddCardPage />} />
                   <Route path={routes.exit} element={<ExitPage />} />
                   <Route path={routes.card} element={<CardPage />} />

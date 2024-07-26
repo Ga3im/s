@@ -1,8 +1,5 @@
-import { PopExit } from "../../components/Popups/PopUser/popExit"
+import { PopExit } from "../../components/Popups/PopUser/popExit";
 
-export const ExitPage = ({setUser})=>{
-
-return(
-    <PopExit/>
-)
-}
+export const ExitPage = () => {
+  return <PopExit />;
+};
