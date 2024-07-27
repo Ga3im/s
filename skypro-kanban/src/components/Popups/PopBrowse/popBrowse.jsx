@@ -1,103 +1,163 @@
 import { routes } from "../../../router/routes";
 import { Calendar } from "../../Calendar/Calendar";
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom";
+import * as S from "./popBrowse.styled";
+import { statusList } from "../../../date";
+import { DeleteCard, EditCardApi, getCards } from "../../../api";
+import { DataCardContext } from "../../../context/DataCardContext";
+import { useContext, useEffect, useState } from "react";
+import { useUserContext } from "../../../context/useUserContext";
 
+export const PopBrowse = ({ cards}) => {
+  const {setCards} = useContext(DataCardContext)
+  const { user } = useUserContext();
+  const [error, setError] = useState();
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [isEdit, setIsEdit] = useState(false);
+  const [textEdit, setTextEdit] = useState(true)
+  const [editCard, setEditCard] = useState({
+    title: cards[0].title,
+    topic: cards[0].topic,
+    status: cards[0].status,
+    description: cards[0].description,
+    date: cards[0].date,
+  });
 
-export const PopBrowse = () => {
-const {id} = useParams()
+  let token = user.token;
+  const Delete = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await DeleteCard({ id, token });
+      setCards(res.tasks);
+      navigate(routes.main);
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const EditCard = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await EditCardApi({ ...editCard, token, id });
+    setCards(res.tasks);
+    navigate(routes.main);
+    } catch (error) {
+      console.log(error)    }
+    
+  };
+  const EditHandle = (e) => {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+    setTextEdit(!textEdit)
+
+  };
+  const CancelHandle = (e) => {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+    setTextEdit(!textEdit)
+  };
+
+  const selectStatusHandle = (s) => {
+    setEditCard({ ...editCard, status: s });
+  };
   return (
     <>
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи {id}</h3>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
-                id="formBrowseCard"
-                action="#"
-              >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
-                    Описание задачи
-                  </label>
-                  <textarea
-                    className="form-browse__area"
-                    name="text"
-                    id="textArea01"
-                    readOnly
-                    placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
-              <Calendar />
-            </div>
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div> 
-              <Link to={routes.main}><button className="btn-browse__close _btn-bg _hover01">Закрыть </button></Link>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <S.Browse>
+        <S.BrowseContainer>
+          <S.BrowseBlock>
+            <S.Content>
+              <S.TopBlock>
+                <S.H3>{cards[0].title}</S.H3>
+                <S.CatTheme
+                $color={cards[0].topic}>
+                  <p>{cards[0].topic}</p>
+                </S.CatTheme>
+              </S.TopBlock>
+              <S.Status>
+                <p>Статус</p>
+                <S.StatusThemes>
+                  {!isEdit && (
+                    <S.StatusTheme
+                    $isSelected={cards[0].status}>
+                        <p>{cards[0].status}</p>
+                    </S.StatusTheme>
+                  )}
+                  {isEdit &&
+                    statusList.map((s) => (
+                      <S.StatusTheme
+                        key={s}
+                        $isClick={s === editCard.status}
+                        onClick={() => selectStatusHandle(s)}
+                      >
+                        <p>{s}</p>
+                      </S.StatusTheme>
+                    ))}
+                </S.StatusThemes>
+              </S.Status>
+              <S.BrowseWrap>
+                <S.BrowseFrom>
+                  <S.FormBlock>
+                    <S.Label>Описание задачи</S.Label>
+                    <S.TextArea
+                       readOnly={textEdit}
+                      onChange={(e) =>
+                        setEditCard({
+                          ...editCard,
+                          description: e.target.value,
+                        })
+                      }
+                      value={editCard.description }
+                      name="text"
+                      placeholder="Введите описание задачи..."
+                   />
+                     
+                  </S.FormBlock>
+                </S.BrowseFrom>
+                <Calendar
+                  selected={editCard.date}
+                  setSelected={(date) => setEditCard({ ...editCard, date })}
+                />
+              </S.BrowseWrap>
+
+              {!isEdit && (
+                <S.ButtonsBrowse>
+                  <S.BtnGroup>
+                    <S.BtnBor onClick={EditHandle}>
+                      <p>Редактировать задачу</p>
+                    </S.BtnBor>
+                    <S.BtnDel onClick={Delete}>
+                      <p>Удалить задачу</p>
+                    </S.BtnDel>
+                  </S.BtnGroup>
+                  <Link to={routes.main}>
+                    <S.BtnClose>Закрыть</S.BtnClose>
+                  </Link>
+                </S.ButtonsBrowse>
+              )}
+
+              {isEdit && (
+                <S.ButtonEdit>
+                  <S.BtnGroup>
+                    <S.BtnSave onClick={EditCard}>
+                      <p>Сохранить</p>
+                    </S.BtnSave>
+                    <S.BtnDel onClick={CancelHandle}>
+                      <p>Отменить</p>
+                    </S.BtnDel>
+                    <S.BtnDel onClick={Delete}>
+                      <p>Удалить задачу</p>
+                    </S.BtnDel>
+                  </S.BtnGroup>
+                  <Link to={routes.main}>
+                    <S.BtnClose>Закрыть</S.BtnClose>
+                  </Link>
+                </S.ButtonEdit>
+              )}
+            </S.Content>
+          </S.BrowseBlock>
+        </S.BrowseContainer>
+      </S.Browse>
     </>
   );
 };
