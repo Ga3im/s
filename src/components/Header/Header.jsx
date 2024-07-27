@@ -7,15 +7,15 @@ import { useState } from "react";
 
 export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
   const { user } = useUserContext();
-  const [checked, setChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const toggleOpenUser = () => {
     setIsOpen(!isOpen);
   };
 
   const onChangeTheme = (e) => {
     e.preventDefault();
-    setChecked(!checked);
-    localStorage.setItem("theme", checked);
+    setIsChecked(!isChecked);
+    localStorage.setItem("theme", isChecked);
     setChangeTheme(changeTheme === "light" ? "dark" : "light");
   };
 
@@ -41,10 +41,10 @@ export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
               <S.HeaderPopUser onClick={(e) => e.stopPropagation()}>
                 <S.UserName>{user.name}</S.UserName>
                 <S.UserMail>{user.login}</S.UserMail>
-                <S.UserTheme>
+                <S.UserTheme
+                checked={isChecked}>
                   <p>Темная тема</p>
                   <input
-                    defaultChecked={checked}
                     onClick={onChangeTheme}
                     type="checkbox"
                     name="checkbox"

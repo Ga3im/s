@@ -138,7 +138,7 @@ export const UserTheme = styled.div`
     content: "";
     position: absolute;
     top: 1px;
-    left: 1px;
+    left: ${({checked})=>( checked ? '12px' : '1px')} ;
     width: 11px;
     height: 11px;
     border-radius: 50%;
@@ -146,9 +146,6 @@ export const UserTheme = styled.div`
     transition: 0.5s;
   }
 
-  input:checked[type="checkbox"]::before {
-    left: 12px;
-  }
 `;
 
 export const ButtonExit = styled.button`
