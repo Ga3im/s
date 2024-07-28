@@ -19,9 +19,11 @@ export const HeaderBlock = styled.div`
   padding: 0 10px;
 `;
 export const HeaderLogo = styled.div`
-  img {
-    width: 85px;
-  }
+  width: 90px;
+  height: 25px;
+  background-size: 90px;
+  background-repeat: no-repeat;
+  background-image: ${({ theme }) => theme.logo};
 `;
 
 export const Nav = styled.nav`
@@ -138,14 +140,13 @@ export const UserTheme = styled.div`
     content: "";
     position: absolute;
     top: 1px;
-    left: ${({checked})=>( checked ? '12px' : '1px')} ;
+    left: ${({ checked }) => (checked ? "12px" : "1px")};
     width: 11px;
     height: 11px;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.checkpoint};
     transition: 0.5s;
   }
-
 `;
 
 export const ButtonExit = styled.button`

@@ -24,9 +24,7 @@ export const Header = ({ isOpen, setIsOpen, changeTheme, setChangeTheme }) => {
       <Container>
         <S.HeaderBlock>
           <S.HeaderLogo>
-            <a href="" target="_self">
-              <img src="/logo.png" alt="logo" />
-            </a>
+          
           </S.HeaderLogo>
           <S.Nav>
             <Link to={routes.addcard}>

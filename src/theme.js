@@ -13,6 +13,7 @@ export const light = {
   HeadUser: "#FFFFFF",
   shadow: "0px 0px 5px black",
   checkpoint: "#94A6BE",
+  logo:'url("/logo.png")',
 };
 
 export const dark = {
@@ -30,4 +31,6 @@ export const dark = {
   HeadUser: "#202229",
   shadow: "0px 0px 5px white",
   checkpoint: "blue",
+  logo:'url("/logo_dark.png")',
+
 };
