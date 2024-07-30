@@ -14,6 +14,7 @@ export const light = {
   shadow: "0px 0px 5px black",
   checkpoint: "#94A6BE",
   logo:'url("/logo.png")',
+  textArea: "#EAEEF6",
 };
 
 export const dark = {
@@ -32,5 +33,5 @@ export const dark = {
   shadow: "0px 0px 5px white",
   checkpoint: "blue",
   logo:'url("/logo_dark.png")',
-
+  textArea: "#20202C",
 };

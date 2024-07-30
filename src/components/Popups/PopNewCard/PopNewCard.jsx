@@ -55,7 +55,6 @@ export const PopNewCard = () => {
       const res = await addTask({ ...addCard, token });
       setCards(res.tasks);
       navigate(routes.main);
-      console.log(addCard);
     } catch (error) {
       console.log(error.message);
     }

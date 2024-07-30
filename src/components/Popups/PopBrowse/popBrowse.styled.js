@@ -93,8 +93,9 @@ export const StatusTheme = styled.div`
   cursor: pointer;
   margin-bottom: 7px;
   color: #94a6be;
-  font-weight: 500;
-  background: ${({ $isClick, $isSelected }) => ($isClick || $isSelected? "#94A6BE" : "")};
+  line-height: 10px;
+  font-weight: 400;
+  background: ${({ $isClick, $isSelected }) => ($isClick || $isSelected ? "#94A6BE" : "")};
   color: ${({ $isClick, $isSelected }) => ($isClick || $isSelected ? "#FFFFFF" : "")};
 `;
 
@@ -117,14 +118,18 @@ export const FormBlock = styled.div`
 `;
 
 export const Label = styled.label`
-  ${Subttl}
+ color: ${({ theme }) => theme.Title};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.41px;
+
 `;
 export const TextArea = styled.textarea`
   max-width: 370px;
   width: 100%;
   outline: none;
   padding: 14px;
-  background: #eaeef6;
+  background: #EAEEF6;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
@@ -132,7 +137,7 @@ export const TextArea = styled.textarea`
   letter-spacing: -0.14px;
   margin-top: 14px;
   height: 230px;
-  background: ${({ theme }) => theme.cards};
+  background: ${({ theme, $area }) => $area ? '#FFFFFF' : theme.textArea};
   resize: none;
 
   .form-browse__area::-moz-placeholder {

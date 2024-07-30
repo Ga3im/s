@@ -3,19 +3,19 @@ import { Calendar } from "../../Calendar/Calendar";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as S from "./popBrowse.styled";
 import { statusList } from "../../../date";
-import { DeleteCard, EditCardApi, getCards } from "../../../api";
+import { DeleteCard, EditCardApi } from "../../../api";
 import { DataCardContext } from "../../../context/DataCardContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useUserContext } from "../../../context/useUserContext";
 
 export const PopBrowse = ({ cards}) => {
   const {setCards} = useContext(DataCardContext)
   const { user } = useUserContext();
-  const [error, setError] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false);
   const [textEdit, setTextEdit] = useState(true)
+  const [area, setArea] = useState(false)
   const [editCard, setEditCard] = useState({
     title: cards[0].title,
     topic: cards[0].topic,
@@ -50,12 +50,13 @@ export const PopBrowse = ({ cards}) => {
     e.preventDefault();
     setIsEdit(!isEdit);
     setTextEdit(!textEdit)
-
+    setArea(!area);
   };
   const CancelHandle = (e) => {
     e.preventDefault();
     setIsEdit(!isEdit);
     setTextEdit(!textEdit)
+    setArea(!area);
   };
 
   const selectStatusHandle = (s) => {
@@ -100,6 +101,7 @@ export const PopBrowse = ({ cards}) => {
                   <S.FormBlock>
                     <S.Label>Описание задачи</S.Label>
                     <S.TextArea
+                      $area={area}
                        readOnly={textEdit}
                       onChange={(e) =>
                         setEditCard({
